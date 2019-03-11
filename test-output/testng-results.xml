@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="43705" started-at="2019-03-11T14:04:06Z" finished-at="2019-03-11T14:04:50Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="43705" started-at="2019-03-11T14:04:06Z" finished-at="2019-03-11T14:04:50Z">
+      <class name="test.ApproveChangeOrder">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:test.ApproveChangeOrder@d6da883]" name="beforeTest" is-config="true" duration-ms="9" started-at="2019-03-11T14:04:06Z" finished-at="2019-03-11T14:04:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="ApproveCO()[pri:0, instance:test.ApproveChangeOrder@d6da883]" name="ApproveCO" duration-ms="43640" started-at="2019-03-11T14:04:06Z" finished-at="2019-03-11T14:04:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ApproveCO -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:test.ApproveChangeOrder@d6da883]" name="afterTest" is-config="true" duration-ms="40" started-at="2019-03-11T14:04:50Z" finished-at="2019-03-11T14:04:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- test.ApproveChangeOrder -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
