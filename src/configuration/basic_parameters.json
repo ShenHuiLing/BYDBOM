@@ -1,0 +1,9 @@
+{
+"chormedriver":"C:\\software\\chromedriver_win32\\chromedriver.exe",
+"integration":"http://192.168.1.61:8080/static/index.html?forceLocal=true",
+"internal":"http://192.168.8.254:8080/static/index.html",
+"test":"http://192.168.1.61:8081/static/index.html",
+"integrationDB": "jdbc:oracle:thin:@192.168.1.61:1621:xe",
+"integrationDBUser":"system",
+"integrationDBPWD":"admin123"
+}
