@@ -5,5 +5,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SeleniumLib"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jackson"/>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Selenium"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ReportNG"/>
+	<classpathentry kind="lib" path="C:/Users/alans/eclipse/java-oxygen/eclipse/jars/guice-3.0-rc3.jar/guice-3.0-rc3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
