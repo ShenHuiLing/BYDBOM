@@ -84,6 +84,20 @@ public class BTest {
 		}
 	}
 	
+	/**
+	 * start approval process
+	 */
+	public void startApproval() {
+		
+	}
+	
+	/**
+	 * approve the change order
+	 */
+	public void approveProcess() {
+		
+	}
+	
 	public void close()
 	{
 		this.driver.quit();

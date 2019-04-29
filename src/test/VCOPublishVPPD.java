@@ -64,12 +64,19 @@ public class VCOPublishVPPD extends BTest {
 		  for (int i=0;i<approverCount;i++) {
 			  vcoPage.text.openTextBox(TextStyle.IDINTD, columnId, i);
 			  Thread.sleep(1000);
-			  String tableId=vcoPage.otherElements.getTableId(TableStyle.WORKFLOWTASKOWNERTRIGGERFIELD, 0);
-			  vcoPage.button.clickMagnifyingGlass(TableStyle.WORKFLOWTASKOWNERTRIGGERFIELD,tableId, i+1,2);
-			  Thread.sleep(1000);
+			  //String tableId=vcoPage.otherElements.getTableId(TableStyle.WORKFLOWTASKOWNERTRIGGERFIELD, 0);
+			  //vcoPage.button.clickMagnifyingGlass(TableStyle.WORKFLOWTASKOWNERTRIGGERFIELD,tableId, i+1,2);
+			  //Thread.sleep(1000);
 			  super.bcf.readJasonFile(EnvJsonFile.TESTFILE);
-			  vcoPage.option.clickCheckBoxOption(super.bcf.getProperty("approver"));
+			  String approver=super.bcf.getProperty("approver");
+			  //input login name in query box
+			  vcoPage.text.inputText("userLoginName",approver);
 			  Thread.sleep(1000);
+			  //switch the query range to "all"
+			  
+			  vcoPage.option.clickCheckBoxOption(approver);
+			  Thread.sleep(1000);
+			  
 			  vcoPage.button.clickButton(">>");
 			  Thread.sleep(1000);
 			  vcoPage.button.clickButton("È·¶¨");

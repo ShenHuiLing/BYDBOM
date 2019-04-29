@@ -36,15 +36,23 @@ public class BOtherElements {
 	 * click the row by the specific text
 	 * @param text
 	 */
-	public void clickRowByText(String text) {
-		String xPath="//tr[contains(@id, 'gridview')]/td[2]/div[contains(@class, 'x-grid-cell-inner')]";
+	public void clickRowByText(ListViewStyle ls, String tdIndex, String text) {
+		String xPath="";
+		if(ls==ListViewStyle.GRIDVIEW) {
+			xPath="//tr[contains(@id, 'gridview')]/td[" + tdIndex + "]/div[contains(@class, 'x-grid-cell-inner')]";
+		}
+		if(ls==ListViewStyle.TREEVIEW) {
+			xPath="//tr[contains(@id, 'treeview')]/td[" + tdIndex + "]/div[contains(@class, 'x-grid-cell-inner')]";
+		}
 		elementList=driver.findElements(By.xpath(xPath));
-		
+		System.out.println("=====" + text);
 		int i;
 		for(i=0;i<elementList.size();i++)
 			{	
+				System.out.println(elementList.get(i).getText());
 			    if(elementList.get(i).getText().contains(text)){
 			    	elementList.get(i).click();
+			    	System.out.println("found it");
 				    break;
 			    }
 			}

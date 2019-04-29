@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import base.BTest;
 import common.ColumnStyle;
 import common.EnvJsonFile;
+import common.ListViewStyle;
 import common.TableStyle;
 import common.TextStyle;
 import page.MainPage;
@@ -44,7 +45,7 @@ public class ApproveChangeOrder extends BTest {
 			  Thread.sleep(2000);
 			  
 			  //check the approval option
-			  pendingTaskPage.otherElements.clickRowByText("批准");
+			  pendingTaskPage.otherElements.clickRowByText(ListViewStyle.GRIDVIEW,"2","批准");
 			  Thread.sleep(1000);
 			  
 			  //assign next approvers 

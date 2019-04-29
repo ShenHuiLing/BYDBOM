@@ -83,6 +83,17 @@ public class BText {
 		element.sendKeys(text);
 	}
 	
+	/**
+	 * input the text in the text box by element's name
+	 * @param elementName
+	 * @param text
+	 */
+	public void inputText(String elementName, String text) {
+		String xPath="//input[contains(@name, '" + elementName + "')]";
+		WebElement element=this.driver.findElement(By.xpath(xPath));
+		element.sendKeys(text);
+	}
+	
 
 	/**
 	 * cover: product spectrum page, VPPD page

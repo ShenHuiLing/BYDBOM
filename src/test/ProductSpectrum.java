@@ -3,6 +3,7 @@ package test;
 import org.testng.annotations.Test;
 
 import base.BTest;
+import common.ChangeOrderCode;
 import common.EnvJsonFile;
 import common.ListViewStyle;
 import common.TextStyle;
@@ -11,6 +12,8 @@ import page.ProductSpectrumPage;
 
 import org.testng.annotations.BeforeTest;
 
+import java.util.HashMap;
+import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -88,9 +91,9 @@ public class ProductSpectrum extends BTest {
 		  Thread.sleep(1000);
 		  productSpectrumPage.option.selectOption("燃油");
 		  
-		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "upgrading", 1);
+		  //productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "upgrading", 1);
 		  Thread.sleep(1000);
-		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-upgrading-"+super.bcf.getTimeStamp());
+		  //productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-upgrading-"+super.bcf.getTimeStamp());
 		  
 		  //add expected go-live year
 		  productSpectrumPage.button.clickButton("新增");
@@ -99,8 +102,9 @@ public class ProductSpectrum extends BTest {
 		  Thread.sleep(1000);
 		  
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "nodeCode", 1);
+		  String projectCode="AT-CODE-"+super.bcf.getTimeStamp();
 		  Thread.sleep(1000);
-		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-code-"+super.bcf.getTimeStamp());
+		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,projectCode);
 		  
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "nodeName", 1);
 		  Thread.sleep(1000);
@@ -110,11 +114,13 @@ public class ProductSpectrum extends BTest {
 		  Thread.sleep(1000);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-description-"+super.bcf.getTimeStamp());
 		  
+		  /*
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "status", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.option.expandDropdownList();
 		  Thread.sleep(1000);
 		  productSpectrumPage.option.selectOption("规划");
+		  */
 		  Thread.sleep(1000);
 		  
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "firstPlant", 1);
@@ -122,7 +128,18 @@ public class ProductSpectrum extends BTest {
 		  productSpectrumPage.option.expandDropdownList();
 		  Thread.sleep(1000);
 		  productSpectrumPage.option.SelectAllCheckboxOption();
+		  Thread.sleep(1000);
 		  
+		  /*
+		  productSpectrumPage.button.clickButton("保存");
+		  Thread.sleep(2000);
+		  productSpectrumPage.button.clickButton("初始化超级BOM");
+		  Thread.sleep(2000);
+		  
+		  Map<String, String> testData=new HashMap<String, String>();
+		  testData.put("ProjectCode",projectCode);
+		  super.bcf.writeJasonFile(EnvJsonFile.TESTDATA, testData);
+		  */
 		  
 		  //add power configuration
 		  productSpectrumPage.button.clickButton("新增");
@@ -150,12 +167,14 @@ public class ProductSpectrum extends BTest {
 		  Thread.sleep(1000);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-dynamicConfig-"+super.bcf.getTimeStamp());
 		  
+		  /*
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "status", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.option.expandDropdownList();
 		  Thread.sleep(1000);
 		  productSpectrumPage.option.selectOption("规划");
-		  
+		  */
+		  Thread.sleep(1000);
 
 		  
 		  //add basic configuration
@@ -192,6 +211,16 @@ public class ProductSpectrum extends BTest {
 		  
 		  productSpectrumPage.button.clickButton("保存");
 		  Thread.sleep(2000);
+		  //click the go-live year node
+		  productSpectrumPage.otherElements.clickRowByText(ListViewStyle.TREEVIEW, "4", projectCode);
+		  Thread.sleep(1000);
+		  
+		  productSpectrumPage.button.clickButton("初始化超级BOM");
+		  Thread.sleep(2000);
+		  
+		  Map<String, String> testData=new HashMap<String, String>();
+		  testData.put("ProjectCode",projectCode);
+		  super.bcf.writeJasonFile(EnvJsonFile.TESTDATA, testData);
 		  
 		  Assert.assertEquals(productSpectrumPage.otherElements.isEditFlagDisappeared(ListViewStyle.TREEVIEW), true);
 		  
@@ -209,7 +238,7 @@ public class ProductSpectrum extends BTest {
 
   @AfterTest
   public void afterTest() {
-	  super.close();
+	  //super.close();
   }
 
 }
