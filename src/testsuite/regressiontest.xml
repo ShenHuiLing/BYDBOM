@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Regression Test">
-    <test name="Apply a new part">
+    <test name="update VPPD">
         <classes>
-            <class name="test.PartApply"/>
+            <class name="test.VPPDManagement"/>
         </classes>
     </test>
-    
+    <test name="publish VPPD with VCO">
+        <classes>
+            <class name="test.VCOPublishVPPD"/>
+        </classes>
+    </test>
+    <test name="Approve a change order">
+        <classes>
+            <class name="test.ApproveChangeOrder"/>
+        </classes>
+    </test>
  
 
  

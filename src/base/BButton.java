@@ -62,9 +62,11 @@ public class BButton {
 			if(elementList.get(i).getText().contains(button))
 			{
 				elementList2.add(elementList.get(i));
+				System.out.println(i + ":" + elementList.get(i).getAttribute("id"));
+				
 			}
 		}
-		elementList2.get(index).click();
+		//elementList2.get(index).click();
 	}
 	
 	/**
@@ -119,7 +121,26 @@ public class BButton {
 		elementList.get(index).click();
 	}
 	
-
+	/**
+	 * click the query button in approver selector to look up the candidate
+	 */
+	public void clickQueryApproverButton() {
+		String xPath="//span[contains(@id,'gantsearchform') and contains(@id, 'header_hd-textEl')]";
+		elementList=this.driver.findElements(By.xpath(xPath));
+		String id="";
+		int i;
+		for(i=0;i<elementList.size();i++)
+			{
+				if(elementList.get(i).getText().equals("Î´Ñ¡ÔñÓÃ»§")){
+					id=elementList.get(i).getAttribute("id");
+					break;
+				}
+			}
+		
+		xPath="//span[@id='" + id + "']/../following-sibling::a[1]/span/span/span";
+		WebElement element=this.driver.findElement(By.xpath(xPath));
+		element.click();
+	}
 
 }
 

@@ -70,6 +70,8 @@ public class BText {
 		
 	}
 	
+	
+	
 	/**
 	 * input the text in the table per the specific row and col
 	 * @param tableId
@@ -118,12 +120,23 @@ public class BText {
 		String value="";
 		String xPath="";
 		if(ts==TableStyle.GRIDVIEW) {
-			xPath="//table[contains(@id, 'gridview') and contains(@id, '" + tableId + "') and contains(@id, 'table')]/tbody/tr[" + row + "]/td[" + col + "]/div";
+			xPath="//table[contains(@id, '" + tableId + "')]/tbody/tr[" + row + "]/td[" + col + "]/div";
 			WebElement element=this.driver.findElement(By.xpath(xPath));
 			value=element.getText();
-			System.out.println(value);
 		}
 		
+		return value;
+	}
+	
+	/**
+	 * get the value from the input text box
+	 * @return 
+	 */
+	public String getValueFromTextBox() {
+		String value="";
+		String xPath="//input[contains(@id, 'textfield') and contains(@id, 'inputEl') and contains(@name, 'changeCode') and contains(@readonly, 'readonly')]";
+		WebElement element=this.driver.findElement(By.xpath(xPath));
+		value=element.getAttribute("value");		
 		return value;
 	}
 	

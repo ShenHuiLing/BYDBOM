@@ -45,14 +45,29 @@ public class BOtherElements {
 			xPath="//tr[contains(@id, 'treeview')]/td[" + tdIndex + "]/div[contains(@class, 'x-grid-cell-inner')]";
 		}
 		elementList=driver.findElements(By.xpath(xPath));
-		System.out.println("=====" + text);
 		int i;
 		for(i=0;i<elementList.size();i++)
 			{	
 				System.out.println(elementList.get(i).getText());
 			    if(elementList.get(i).getText().contains(text)){
 			    	elementList.get(i).click();
-			    	System.out.println("found it");
+				    break;
+			    }
+			}
+	}
+	
+	public void clickRowByText(TableStyle ts, String tableId, String tdIndex, String text) {
+		String xPath="";
+		if(ts==TableStyle.GRIDVIEW) {
+			xPath="//table[contains(@id, 'gridview') and contains(@id, '" + tableId + "')]/tbody/tr/td[" + tdIndex + "]";
+		}
+		elementList=driver.findElements(By.xpath(xPath));
+		int i;
+		for(i=0;i<elementList.size();i++)
+			{	
+				System.out.println(elementList.get(i).getText());
+			    if(elementList.get(i).getText().contains(text)){
+			    	elementList.get(i).click();
 				    break;
 			    }
 			}
@@ -234,6 +249,56 @@ public class BOtherElements {
 		}
 		
 		return Id;
+	}
+	
+	/**
+	 * 
+	 * @return the approver table Id
+	 */
+	public String getApproverTableId() {
+		String xPath="//span[contains(@id, 'panel') and contains(@id, 'header_hd-textEl')]";
+		elementList=this.driver.findElements(By.xpath(xPath));
+		String id="";
+		int i;
+		for(i=0;i<elementList.size();i++)
+			{
+				if(elementList.get(i).getText().equals("后续任务待办人:")){
+					id=elementList.get(i).getAttribute("id");
+					break;
+				}
+			}
+		
+		xPath="//span[contains(@id, '" + id + "')]/../../../../../following-sibling::div[1]/div/div[2]/div/table";
+		WebElement element=this.driver.findElement(By.xpath(xPath));
+		return element.getAttribute("id");
+	}
+	
+	/**
+	 * 
+	 * @return total rows in the table
+	 */
+	public int getTableRowCount(TableStyle ts, String tableId) {
+		int count=0;
+		String xPath="";
+		if(ts==TableStyle.GRIDVIEW) {
+			xPath="//table[contains(@id, '" + tableId + "') and contains(@id, 'gridview')]/tbody/tr";
+			elementList=this.driver.findElements(By.xpath(xPath));	
+			count=elementList.size();
+		}
+		
+		return count;
+	}
+	
+	public int getTableColCount(TableStyle ts, String tableId) {
+		int count=0;
+		String xPath="";
+		if(ts==TableStyle.GRIDVIEW) {
+			xPath="//table[contains(@id, '" + tableId + "') and contains(@id, 'gridview')]/tbody/tr[1]/td";
+			elementList=this.driver.findElements(By.xpath(xPath));	
+			count=elementList.size();
+		}
+		
+		return count;
 	}
 	
 	public String getWindowTitle() {

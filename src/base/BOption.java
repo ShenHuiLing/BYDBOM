@@ -152,7 +152,6 @@ public class BOption {
 	public void SelectAllCheckboxOption() {
 		String xPath="//input[contains(@type, 'checkbox')]";
 		elementList=this.driver.findElements(By.xpath(xPath));
-		System.out.println(elementList.size());
 		int i;
 		for(i=0;i<elementList.size();i++)
 				  {
@@ -166,6 +165,49 @@ public class BOption {
 	 */
 	public void selectLastOption(){
 		WebElement element=driver.findElement(By.xpath("//ul[contains(@class, 'x-list-plain')]/li[last()]"));
+		element.click();
+	}
+	
+	/**
+	 * click the check box in approver selector to select all the chosen approvers
+	 */
+	public void checkAllSelectedApprover() {
+		String xPath="//span[contains(@id,'gantsearchform') and contains(@id, 'header_hd-textEl')]";
+		elementList=this.driver.findElements(By.xpath(xPath));
+		String id="";
+		int i;
+		for(i=0;i<elementList.size();i++)
+			{
+				if(elementList.get(i).getText().equals("已选择用户")){
+					id=elementList.get(i).getAttribute("id");
+					break;
+				}
+			}
+		
+		xPath="//span[@id='" + id + "']/../../../../../../../../following-sibling::div[1]/div/div/div/div/div/span";
+		WebElement element=this.driver.findElement(By.xpath(xPath));
+		element.click();
+	}
+	
+	/**
+	 * click the checkbox to select approval option
+	 */
+	public void selectApprovalOption()
+	{
+		String xPath="//span[contains(@id, 'panel') and contains(@id, 'header_hd-textEl')]";
+		elementList=this.driver.findElements(By.xpath(xPath));
+		String id="";
+		int i;
+		for(i=0;i<elementList.size();i++)
+			{
+				if(elementList.get(i).getText().equals("审批操作")){
+					id=elementList.get(i).getAttribute("id");
+					break;
+				}
+			}
+		
+		xPath="//span[contains(@id, '" + id + "')]/../../../../../following-sibling::div[1]";
+		WebElement element=this.driver.findElement(By.xpath(xPath));
 		element.click();
 	}
 }

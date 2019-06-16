@@ -96,6 +96,11 @@ public class VPPDManagement extends BTest {
 		  vppdPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getTimeStamp());
 		  
 		  //add the Chinese description
+		  vppdPage.text.openTextBox(TextStyle.IDINTD, String.valueOf(columnId-1), 1);
+		  Thread.sleep(1000);
+		  vppdPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getTimeStamp());
+		  
+		  //add the English description
 		  vppdPage.text.openTextBox(TextStyle.IDINTD, String.valueOf(columnId+3), 1);
 		  Thread.sleep(1000);
 		  vppdPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getTimeStamp());
