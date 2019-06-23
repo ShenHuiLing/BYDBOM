@@ -29,20 +29,20 @@ try {
 		  super.LoginBOM();
 		  Thread.sleep(10000);
 		  
-		  //open material library window
+		  //open material application window
 		  MainPage mainPage=new MainPage(super.driver);
 		  mainPage.mainMenu.hoverMenu("物料管理");
-		  Thread.sleep(2000);
-		  mainPage.mainMenu.clickMenu("物料库");
-		  Thread.sleep(5000);
+		  Thread.sleep(1000);
+		  mainPage.mainMenu.hoverMenu("零件物料管理");
+		  Thread.sleep(1000);
+		  mainPage.mainMenu.clickMenu("零件物料申请");
+		  Thread.sleep(3000);
 		  
 		  MaterialPage materialPage=new MaterialPage(super.driver);
 		  //create a new material application form
 		  materialPage.button.clickButton("进入编辑");
 		  Thread.sleep(1000);
-		  materialPage.button.clickButton("新增");
-		  Thread.sleep(1000);
-		  materialPage.button.clickChildButton("添加零件");
+		  materialPage.button.clickButton("添加零件");
 		  Thread.sleep(1000);
 		  
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
@@ -53,16 +53,11 @@ try {
 		  materialApplicationTableId=materialPage.otherElements.getTableId(TableStyle.GRIDVIEW, 0);
 		  
 		  //select part
-		  materialPage.text.openTextBox(materialApplicationTableId, 1, 4);
-		  Thread.sleep(1000);
-		  magnifyingGlassTableId=materialPage.otherElements.getTableId(TableStyle.GANGTRIGGERFIELD, 1);
-		  materialPage.button.clickMagnifyingGlass(TableStyle.GANGTRIGGERFIELD, magnifyingGlassTableId, 1, 2);
-		  Thread.sleep(2000);
 		  String Id;
 		  Id=materialPage.otherElements.getLabelId(LabelStyle.TEXTFIELD, "零件号");
 		  materialPage.text.openTextBox(TextStyle.IDININPUT, Id, 1);
-		  materialPage.text.openTextBox(TextStyle.IDININPUT, Id, 1);
-		  materialPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getProperty("PartNum"));
+		  String partNum=super.bcf.getProperty("PartNum");
+		  materialPage.text.inputText(TextStyle.TEXTFIELD, partNum);
 		  Thread.sleep(1000);
 		  materialPage.button.clickButton("查询",1);
 		  Thread.sleep(1000);
@@ -72,40 +67,51 @@ try {
 		  materialPage.button.clickButton("选择");
 		  Thread.sleep(1000);
 		  
-		  materialApplicationTableId=materialPage.otherElements.getTableId(TableStyle.GRIDVIEW, 1);
-		  //input requested plant
+		  materialApplicationTableId=materialPage.otherElements.getTableId(TableStyle.GRIDVIEW, 0);
+		  
+		  //select the base belong to
 		  materialPage.text.openTextBox(materialApplicationTableId, 1, 7);
-		  Thread.sleep(1000);
-		  materialPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getTimeStamp().substring(4));
-		  Thread.sleep(1000);
-		  
-		  //input experts group
-		  materialPage.text.openTextBox(materialApplicationTableId, 1, 8);
-		  Thread.sleep(1000);
-		  materialPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getTimeStamp().substring(4));
-		  Thread.sleep(1000);
-		  
-		  //select operation mode
-		  materialPage.text.openTextBox(materialApplicationTableId, 1, 15);
 		  Thread.sleep(1000);
 		  materialPage.option.expandDropdownList();
 		  Thread.sleep(1000);
-		  materialPage.option.selectOption("BS");
-		  Thread.sleep(1000);
+		  materialPage.option.selectOption("长沙");
+		  Thread.sleep(2000);
 		  
+		  materialApplicationTableId=materialPage.otherElements.getTableId(TableStyle.GRIDVIEW, 1);
 		  
-		  //input material group
-		  materialPage.text.openTextBox(materialApplicationTableId, 1, 17);
+		  //select material group
+		  materialPage.text.openTextBox(materialApplicationTableId, 1, 1);
 		  Thread.sleep(1000);
-		  materialPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getTimeStamp().substring(4));
+		  materialPage.option.expandDropdownList();
 		  Thread.sleep(1000);
+		  materialPage.option.selectOption("(汽)标准件");
+		  Thread.sleep(2000);
 		  
-		  
-		  //input tax code
-		  materialPage.text.openTextBox(materialApplicationTableId, 1, 26);
+		  //select manufacture code
+		  materialPage.text.openTextBox(materialApplicationTableId, 1, 2);
 		  Thread.sleep(1000);
-		  String tax_id=super.bcf.getTimeStamp().substring(4);
-		  materialPage.text.inputText(TextStyle.TEXTFIELD,tax_id);
+		  materialPage.option.expandDropdownList();
+		  Thread.sleep(1000);
+		  materialPage.option.selectOption("内部供应商");
+		  Thread.sleep(2000);
+		  
+		  //select tax code
+		  materialPage.text.openTextBox(materialApplicationTableId, 1, 3);
+		  Thread.sleep(1000);
+		  magnifyingGlassTableId=materialPage.otherElements.getTableId(TableStyle.GANGTRIGGERFIELD, 1);
+		  materialPage.button.clickMagnifyingGlass(TableStyle.GANGTRIGGERFIELD, magnifyingGlassTableId, 1, 2);
+		  Thread.sleep(2000);
+		  Id=materialPage.otherElements.getLabelId(LabelStyle.TEXTFIELD, "税收编码");
+		  materialPage.text.openTextBox(TextStyle.IDININPUT, Id, 1);
+		  Thread.sleep(1000);
+		  materialPage.text.inputText(TextStyle.TEXTFIELD, "122333");
+		  Thread.sleep(1000);
+		  materialPage.button.clickButton("查询",1);
+		  Thread.sleep(1000);
+		  PopUpTableId=materialPage.otherElements.getTableId(TableStyle.GRIDVIEW,2);
+		  materialPage.option.clickCheckBox(PopUpTableId, 1,1);
+		  Thread.sleep(1000);
+		  materialPage.button.clickButton("选择");
 		  Thread.sleep(1000);
 		  
 		  //save the material application order
@@ -115,22 +121,28 @@ try {
 		  
 		  //update the material application record in DB and assign a material number to the part
 		  super.bcf.connectDB(EnvJsonFile.BASICFILE, "integration");
-		  String sql="update CUST.CUST_MATERIAL_INFO\r\n" + 
-					"set \r\n" + 
-					"CF_STATUS='APPLY_COMPLETE',\r\n" + 
-					"CF_NO='P'||(select to_char(sysdate,'yyyymmddhh24miss') from dual),\r\n" + 
-					"MAT_NO=(select to_char(sysdate,'yyyymmddhh24miss') from dual),\r\n" + 
-					"mat_desc='mat_desc' || (select to_char(sysdate,'yyyymmddhh24miss') from dual),\r\n" + 
-					"mat_endesc='mat_endesc' || (select to_char(sysdate,'yyyymmddhh24miss') from dual),\r\n" + 
-					"ACTIVE_STATUS='CURRENT'\r\n" + 
-					"where tax_id='" + tax_id + "'";
+		  String sql="update CUST.CUST_MATERIAL_INFO\n" + 
+		  		"set \n" + 
+		  		"CF_STATUS='APPLY_COMPLETE',\n" + 
+		  		"CF_NO='P'||(select to_char(sysdate,'yyyymmddhh24miss') from dual),\n" + 
+		  		"MAT_NO=(select to_char(sysdate,'yyyymmddhh24miss') from dual),\n" + 
+		  		"mat_desc='mat_desc' || (select to_char(sysdate,'yyyymmddhh24miss') from dual),\n" + 
+		  		"mat_endesc='mat_endesc' || (select to_char(sysdate,'yyyymmddhh24miss') from dual),\n" + 
+		  		"ACTIVE_STATUS='CURRENT'\n" + 
+		  		"where material_id=\n" + 
+		  		"(\n" + 
+		  		"select cmi.material_id\n" + 
+		  		"from CUST.CUST_MATERIAL_INFO cmi, mstdata.md_material mm\n" + 
+		  		"where cmi.material_id=mm.md_material_id\n" + 
+		  		"and mm.material_num='" + partNum + "'\n" + 
+		  		")";
 		  super.bcf.updateData(sql);
 		  super.bcf.closeDB();
 		  
 		  
 		  
 			  	  
-	} catch (InterruptedException e) {
+	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		Assert.assertEquals(false, true);

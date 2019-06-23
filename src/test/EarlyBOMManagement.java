@@ -1,6 +1,5 @@
 package test;
 
-
 import org.testng.annotations.Test;
 
 import base.BTest;
@@ -17,24 +16,14 @@ import org.testng.annotations.BeforeTest;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
-/**
- * EBOM maintain
- * 1. add part
- * 2. input the mandatory fields including quantity, structure code, assemble workshop, suggested source, development strategy 
- * 3. save
- * @author alans
- *
- */
-public class EBOMManagement extends BTest {
+public class EarlyBOMManagement extends BTest{
   @Test
-  public void EBOMAddPart() {
+  public void AddPartInEarlyBOM() {
 	  try {
-		  
 		  //start BOM
 		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
 		  Thread.sleep(10000);
 		  
-		  		
 		  //login BOM
 		  super.LoginBOM();
 		  Thread.sleep(10000);
@@ -45,7 +34,7 @@ public class EBOMManagement extends BTest {
 		  Thread.sleep(2000);
 		  mainPage.mainMenu.hoverMenu("工程BOM管理");
 		  Thread.sleep(2000);
-		  mainPage.mainMenu.clickMenu("工程BOM管理");
+		  mainPage.mainMenu.clickMenu("早期BOM管理");
 		  Thread.sleep(10000);
 		  
 		  EBOMPage eBomPage=new EBOMPage(super.driver);
@@ -77,7 +66,7 @@ public class EBOMManagement extends BTest {
 		  eBomPage.text.openTextBox(TextStyle.IDININPUT, Id, 1);
 		  eBomPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getProperty("PartNum"));
 		  Thread.sleep(1000);
-		  eBomPage.button.clickButton("查询",2);
+		  eBomPage.button.clickButton("查询",1);
 		  Thread.sleep(1000);
 		  String PopUpTableId=eBomPage.otherElements.getTableId(TableStyle.GRIDVIEW,2);
 		  eBomPage.option.clickCheckBox(PopUpTableId, 1,1);
@@ -87,22 +76,24 @@ public class EBOMManagement extends BTest {
 		  eBomPage.button.clickCloseButton(1);
 		  Thread.sleep(1000);
 		  
-		  //input quantity
 		  String mainDataTableId=eBomPage.otherElements.getTableId(TableStyle.GRIDVIEW,1);
-		  
+		 
+		  //input quantity
+		 
 		  Thread.sleep(1000);
-		  eBomPage.text.openTextBox(mainDataTableId, 2, 3);
+		  eBomPage.text.openTextBox(mainDataTableId, 2, 1);
 		  Thread.sleep(1000);
 		  eBomPage.text.inputText(TextStyle.NUMBERFIELD, super.bcf.getTimeStamp().substring(4));
 		  Thread.sleep(1000);
 		  
+		  
 		  //check if there is functional position code. if no, select functional position code
-		  if(eBomPage.text.isTextBoxEmpty(mainDataTableId, 2, 11)) {
-			  eBomPage.text.openTextBox(mainDataTableId, 2, 11);
+		  if(eBomPage.text.isTextBoxEmpty(mainDataTableId, 2, 27)) {
+			  eBomPage.text.openTextBox(mainDataTableId, 2, 27);
 			  Thread.sleep(1000);
 			  String MagnifyingGlassTableId=eBomPage.otherElements.getTableId(TableStyle.GANGTRIGGERFIELD, 2);
 			  eBomPage.button.clickMagnifyingGlass(TableStyle.GANGTRIGGERFIELD, MagnifyingGlassTableId,1,2);
-			  Thread.sleep(1000);
+			  Thread.sleep(3000);
 			  PopUpTableId=eBomPage.otherElements.getTableId(TableStyle.GRIDVIEW,2);
 			  eBomPage.option.clickCheckBox(PopUpTableId, 2,1);
 			  Thread.sleep(1000);
@@ -112,16 +103,17 @@ public class EBOMManagement extends BTest {
 		  
 		  
 		  //select the assemble workshop
-		  eBomPage.text.openTextBox(mainDataTableId, 2, 12);
+		  eBomPage.text.openTextBox(mainDataTableId, 2, 2);
 		  Thread.sleep(1000);
 		  eBomPage.option.expandDropdownList();
 		  Thread.sleep(1000);
 		  eBomPage.option.selectOption("总装车间");
 		  Thread.sleep(1000);
 		  
+		  
 		  //check if there is suggested source. If no, add it
-		  if(eBomPage.text.isTextBoxEmpty(mainDataTableId, 2, 23)) {
-			  eBomPage.text.openTextBox(mainDataTableId, 2, 23);
+		  if(eBomPage.text.isTextBoxEmpty(mainDataTableId, 2, 6)) {
+			  eBomPage.text.openTextBox(mainDataTableId, 2, 6);
 			  Thread.sleep(1000);
 			  eBomPage.option.expandDropdownList();
 			  Thread.sleep(1000);
@@ -129,26 +121,26 @@ public class EBOMManagement extends BTest {
 			  Thread.sleep(1000);
 		  }
 		  
+		  
 		  //select development strategy
-		  eBomPage.text.openTextBox(mainDataTableId, 2, 29);
+		  eBomPage.text.openTextBox(mainDataTableId, 2, 7);
 		  Thread.sleep(1000);
 		  eBomPage.option.expandDropdownList();
 		  Thread.sleep(1000);
 		  eBomPage.option.selectOption("新开发");
 		  Thread.sleep(2000);
-		  eBomPage.text.openTextBox(mainDataTableId, 2, 3);
+		  eBomPage.text.openTextBox(mainDataTableId, 2, 12);
 		  
 		  //save
 		  eBomPage.button.clickButton("保存");
 		  Thread.sleep(2000);
 		  
 		  Assert.assertEquals(eBomPage.otherElements.isEditFlagDisappeared(ListViewStyle.GRIDVIEW), true);
-			  	  
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		Assert.assertEquals(false, true);
-	}
+		  
+	  }catch(Exception e) {
+		  e.printStackTrace();
+		  Assert.assertEquals(false, true);
+	  }
   }
   @BeforeTest
   public void beforeTest() {
@@ -156,8 +148,7 @@ public class EBOMManagement extends BTest {
 
   @AfterTest
   public void afterTest() {
-	  //super.close();
-	  
+	super.close();
   }
 
 }

@@ -3,6 +3,7 @@ package test;
 import org.testng.annotations.Test;
 
 import base.BTest;
+import common.BCommonFunction;
 import common.ColumnStyle;
 import common.EnvJsonFile;
 import common.LabelStyle;
@@ -37,13 +38,11 @@ public class ApproveChangeOrder extends BTest {
 
 		  //click the change order link and keep approving the order till the approver completes his task
 		  PendingTaskPage pendingTaskPage=new PendingTaskPage(super.driver);
-		  
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
-		  while(pendingTaskPage.link.clickLinkByText(super.bcf.getProperty("ChangeOrder"))) {
+		  String changeOrder=super.bcf.getProperty("ChangeOrder");
+		  while(pendingTaskPage.link.clickLinkByText(changeOrder)) {
 			  Thread.sleep(2000);
-			  
 			  super.approveProcess();
-			  
 		  }
 		  
 	} catch (Exception e) {

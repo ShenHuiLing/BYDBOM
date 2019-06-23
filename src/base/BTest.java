@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import common.BCommonFunction;
 import common.ColumnStyle;
+import common.DropDownListStyle;
 import common.EnvJsonFile;
 import common.LabelStyle;
 import common.ListViewStyle;
@@ -56,7 +57,7 @@ public class BTest {
 		
 	}
 	
-	public void LoginBOM() {
+	public String LoginBOM() throws Exception {
 		 try {
 				  LoginPage lPage=new LoginPage(this.driver);
 				  bcf.readJasonFile(EnvJsonFile.TESTFILE);
@@ -66,9 +67,11 @@ public class BTest {
 				  lPage.InputPwd(pwd);
 				  Thread.sleep(1000);
 				  lPage.clickLoginButton();
-		} catch (InterruptedException e) {
+				  return username;
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw e;
 		}
 	}
 	
@@ -123,7 +126,7 @@ public class BTest {
 						  Thread.sleep(1000);
 						  //switch the query range to "all"
 						  String labelId=approvalPage.otherElements.getLabelId(LabelStyle.COMBO, "审批人员范围");
-						  approvalPage.option.expandDropdownList(labelId);
+						  approvalPage.option.expandDropdownList(DropDownListStyle.COMBO,labelId);
 						  approvalPage.option.selectOption("全部");
 						  //click query button
 						  approvalPage.button.clickQueryApproverButton();

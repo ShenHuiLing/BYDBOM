@@ -1,6 +1,7 @@
 package base;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -172,6 +173,8 @@ public class BOtherElements {
 			searchString="textfield-";
 		else if(ls==LabelStyle.GANTCODETYPECOMBOBOX)
 			searchString="gantcodetypecombobox-";
+		else if(ls==LabelStyle.GANTCOMBOBOX)
+			searchString="gantcombobox-";
 		
 		xPath="//label[contains(@id, '" + searchString + "')]";
 		
@@ -189,6 +192,45 @@ public class BOtherElements {
 						  	}
 						  }
 		return Id;
+	}
+	
+	/**
+	 * when there are multiple labels with the same name, use this method to get the label ID
+	 * @param ls: label style to adapt different label elements 
+	 * @param labelName
+	 * @param index: there are multiple labels with the same name, use index to indicate which one should be returned
+	 * @return the id of label element
+	 */
+	public String getLabelId(LabelStyle ls, String labelName, int index) {
+		String Id="";
+		String temp;
+		String xPath="";
+		String searchString="";
+		List<String> IdList=new ArrayList<String>();
+		if(ls==LabelStyle.COMBO) 
+			searchString="combo-";
+		else if(ls==LabelStyle.TEXTFIELD)
+			searchString="textfield-";
+		else if(ls==LabelStyle.GANTCODETYPECOMBOBOX)
+			searchString="gantcodetypecombobox-";
+		else if(ls==LabelStyle.GANTCOMBOBOX)
+			searchString="gantcombobox-";
+		
+		xPath="//label[contains(@id, '" + searchString + "')]";
+		
+		elementList=this.driver.findElements(By.xpath(xPath));
+		
+		for(int i=0;i<elementList.size();i++)
+		{
+		  	if(elementList.get(i).getText().contains(labelName))
+			  	{
+					temp=String.valueOf(elementList.get(i).getAttribute("id"));
+					int start=temp.indexOf(searchString)+searchString.length();
+					int end=temp.indexOf("-labelEl");
+					IdList.add(temp.substring(start, end));
+			  	}
+		}
+		return IdList.get(index);
 	}
 	
 	/**
@@ -240,6 +282,15 @@ public class BOtherElements {
 		}
 		else if(ts==TableStyle.GANTCODETYPECOMBOBOX) {
 			searchString="gantcodetypecombobox-";
+			xPath="//table[contains(@id, '" + searchString + "') and contains(@id, 'triggerWrap')]";
+			elementList=this.driver.findElements(By.xpath(xPath));
+			temp=String.valueOf(elementList.get(index).getAttribute("id"));
+			int start=temp.indexOf(searchString)+searchString.length();
+			int end=temp.indexOf("-triggerWrap");
+			Id=temp.substring(start, end);
+		}
+		else if(ts==TableStyle.USERTRIGGERFIELD) {
+			searchString="userTriggerField-";
 			xPath="//table[contains(@id, '" + searchString + "') and contains(@id, 'triggerWrap')]";
 			elementList=this.driver.findElements(By.xpath(xPath));
 			temp=String.valueOf(elementList.get(index).getAttribute("id"));

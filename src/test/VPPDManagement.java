@@ -111,7 +111,7 @@ public class VPPDManagement extends BTest {
 		  
 		  Assert.assertEquals(vppdPage.otherElements.isEditFlagDisappeared(ListViewStyle.GRIDVIEW), true);
 		  
-	} catch (InterruptedException e) {
+	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		Assert.assertEquals(false, true);

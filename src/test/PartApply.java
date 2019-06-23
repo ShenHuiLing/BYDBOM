@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import base.BTest;
 import common.ColumnStyle;
+import common.DropDownListStyle;
 import common.EnvJsonFile;
 import common.LabelStyle;
 import common.ListViewStyle;
@@ -57,12 +58,12 @@ public class PartApply extends BTest{
 		  Thread.sleep(2000);
 		  
 		  String labelId=partApplyOrderPage.otherElements.getLabelId(LabelStyle.COMBO, "申请单类型");
-		  partApplyOrderPage.option.expandDropdownList(labelId);
+		  partApplyOrderPage.option.expandDropdownList(DropDownListStyle.COMBO,labelId);
 		  Thread.sleep(1000);
 		  partApplyOrderPage.option.selectOption("结构件");
 		  Thread.sleep(1000);
 		  partApplyOrderPage.button.clickButton("保存");
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  
 		  partApplyOrderPage.button.clickButton("进入编辑");
 		  Thread.sleep(1000);
@@ -81,7 +82,7 @@ public class PartApply extends BTest{
 		  
 		  
 		  //select Chinese name for the part
-		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 6);
+		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 7);
 		  Thread.sleep(1000);
 		  partApplyOrderPage.button.clickMagnifyingGlass(TableStyle.materialName2, "", 1, 2);
 		  Thread.sleep(1000);
@@ -93,7 +94,7 @@ public class PartApply extends BTest{
 		  
 		  
 		  //select car series code
-		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 7);
+		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 8);
 		  Thread.sleep(1000);
 		  magnifyingGlassTableId=partApplyOrderPage.otherElements.getTableId(TableStyle.GANGTRIGGERFIELD, 0);
 		  Thread.sleep(1000);
@@ -107,14 +108,14 @@ public class PartApply extends BTest{
 		  
 		  
 		  //add the additional information code
-		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 13);
+		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 14);
 		  Thread.sleep(1000);
 		  partApplyOrderPage.text.inputText(TextStyle.TEXTFIELD, super.bcf.getTimeStamp().substring(4));
 		  Thread.sleep(1000);
 		  
 		  //select the functional position code
-		  if(partApplyOrderPage.text.isTextBoxEmpty(partApplicationTableId, 1, 18)){
-			  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 18);
+		  if(partApplyOrderPage.text.isTextBoxEmpty(partApplicationTableId, 1, 19)){
+			  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 19);
 			  Thread.sleep(1000);
 			  magnifyingGlassTableId=partApplyOrderPage.otherElements.getTableId(TableStyle.GANGTRIGGERFIELD, 1);
 			  Thread.sleep(1000);
@@ -128,13 +129,13 @@ public class PartApply extends BTest{
 		  }
 		  
 		  //select suggested source
-		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 22);
+		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 23);
 		  Thread.sleep(1000);
 		  partApplyOrderPage.option.expandDropdownList();
 		  Thread.sleep(1000);
 		  partApplyOrderPage.option.selectOption("采购");
 		  Thread.sleep(1000);
-		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 23);
+		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 24);
 		  Thread.sleep(1000);
 		  
 		  //save
@@ -146,7 +147,7 @@ public class PartApply extends BTest{
 		  Thread.sleep(1000);
 		  
 		  //fetch the part number and save the number into json file, it can be used for further testing, like eBOM
-		  String partNum=partApplyOrderPage.text.getValueFromTextBox(TableStyle.GRIDVIEW, partApplicationTableId, 1, 5);
+		  String partNum=partApplyOrderPage.text.getValueFromTextBox(TableStyle.GRIDVIEW, partApplicationTableId, 1, 6);
 		  Map<String, String> testData=new HashMap<String, String>();
 		  testData.put("PartNum",partNum);
 		  super.bcf.writeJasonFile(EnvJsonFile.TESTDATA, testData);
@@ -173,7 +174,7 @@ public class PartApply extends BTest{
 		  
 		  
 	  }
-	  catch(InterruptedException e) {
+	  catch(Exception e) {
 		  e.printStackTrace();
 		  Assert.assertEquals(false, true);
 	  }

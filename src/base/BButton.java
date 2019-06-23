@@ -62,11 +62,10 @@ public class BButton {
 			if(elementList.get(i).getText().contains(button))
 			{
 				elementList2.add(elementList.get(i));
-				System.out.println(i + ":" + elementList.get(i).getAttribute("id"));
 				
 			}
 		}
-		//elementList2.get(index).click();
+		elementList2.get(index).click();
 	}
 	
 	/**
@@ -108,6 +107,9 @@ public class BButton {
 		}
 		else if(ts==TableStyle.materialName2) {
 			xPath="//table[contains(@id, 'materialName2') and contains(@id, 'triggerWrap')]/tbody/tr[" + row + "]/td[" + col + "]/div"; 
+		}
+		else if(ts==TableStyle.USERTRIGGERFIELD){
+			xPath="//table[contains(@id, 'userTriggerField') and contains(@id, '" + tableId + "') and contains(@id, 'triggerWrap')]/tbody/tr[" + row + "]/td[" + col + "]/div"; 
 		}
 		WebElement element=this.driver.findElement(By.xpath(xPath));
 		element.click();

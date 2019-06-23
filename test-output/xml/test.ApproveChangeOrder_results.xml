@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="apply a new part"
+<testsuite name="approve the change order"
            tests="1"
            failures="0"
            errors="0"
            skipped="0"
-           time="94.359">
+           time="59.880">
   <properties />
   
   
-            <testcase name="partApplyProcess" time="94.359" classname="test.PartApply" />
+            <testcase name="ApproveCO" time="59.880" classname="test.ApproveChangeOrder" />
       
 </testsuite>

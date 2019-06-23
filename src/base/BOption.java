@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
+import common.DropDownListStyle;
 import common.ListViewStyle;
 
 
@@ -87,17 +88,24 @@ public class BOption {
 	 */
 	public void expandDropdownList()
 	{
-		WebElement element=this.driver.findElement(By.xpath("//*[contains(@id, 'combobox') and contains(@id, '-inputEl') and contains(@class, 'focus')]"));
+		WebElement element=this.driver.findElement(By.xpath("//*[contains(@id, 'combo') and contains(@id, '-inputEl') and contains(@class, 'focus')]"));
 		element.click();
 	}
 	
 	/**
-	 * cover: eBOM page
+	 * cover: eBOM page, BOMpublish Page
 	 * expand the dropdown list per label id
 	 * @param labelId
 	 */
-	public void expandDropdownList(String labelId) {
-		String temp="combo-" + labelId + "-inputEl";
+	public void expandDropdownList(DropDownListStyle ddls, String labelId) {
+		String temp="";
+		if(ddls==DropDownListStyle.COMBO)
+			temp="combo-" + labelId + "-inputEl";
+		else if(ddls==DropDownListStyle.GANTCOMBOBOX)
+			temp="gantcombobox-" + labelId + "-inputEl";
+		else if(ddls==DropDownListStyle.GANTCODETYPECOMBOBOX)
+			temp="gantcodetypecombobox-" + labelId + "-inputEl";
+		
 		WebElement element=this.driver.findElement(By.xpath("//input[contains(@id,'" + temp + "')]"));
 		element.click();
 	}

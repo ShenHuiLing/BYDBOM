@@ -96,7 +96,21 @@ public class BText {
 		element.sendKeys(text);
 	}
 	
-
+	/**
+	 * if there are more than one elements with the same name, use this function to pass along the index
+	 * @param elementName: the element attribute "name"
+	 * @param index: the index to indicate which element should be selected
+	 * @param text: the text which need to input to the text box
+	 */
+	public void inputText(String elementName, int index, String text) {
+		String xPath="//input[contains(@name, '" + elementName + "')]";
+		List<WebElement> elements=this.driver.findElements(By.xpath(xPath));
+		if(elements.size()>0) {
+			elements.get(index).sendKeys(text);
+		}
+	}
+	
+	
 	/**
 	 * cover: product spectrum page, VPPD page
 	 * input text into the text box which is currently gaining focus
