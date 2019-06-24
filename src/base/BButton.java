@@ -59,7 +59,7 @@ public class BButton {
 		int i;
 		for(i=0;i<elementList.size();i++)
 		{
-			if(elementList.get(i).getText().contains(button))
+			if(elementList.get(i).getText().equals((button)))
 			{
 				elementList2.add(elementList.get(i));
 				
@@ -144,5 +144,10 @@ public class BButton {
 		element.click();
 	}
 
+	public void clickMaximizeButton() {
+		String xPath="//img[contains(@id,'tool') and contains(@class, 'x-tool-maximize')]";
+		WebElement element=this.driver.findElement(By.xpath(xPath));
+		element.click();
+	}
 }
 

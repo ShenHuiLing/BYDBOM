@@ -55,6 +55,11 @@ public class BText {
 			WebElement element=this.driver.findElement(By.xpath(xPath));
 			element.click();
 		}
+		else if(ts==TextStyle.TEXTAREAFIELD) {
+			xPath="//textarea[contains(@id, 'textareafield') and contains(@id, '" + Id + "') and contains(@id, 'inputEl')]";
+			WebElement element=this.driver.findElement(By.xpath(xPath));
+			element.click();
+		}
 	}
 	
 	/**
@@ -96,6 +101,17 @@ public class BText {
 		element.sendKeys(text);
 	}
 	
+	/**
+	 * input the text in the text box by element style and element name
+	 * @param ts: element style, for example input, textarea
+	 * @param elementName: the "name" attribute of the element
+	 * @param text
+	 */
+	public void inputText(TextStyle ts, String elementName, String text) {
+		String xPath="//textarea[contains(@name, '" + elementName + "')]";
+		WebElement element=this.driver.findElement(By.xpath(xPath));
+		element.sendKeys(text);
+	}
 	/**
 	 * if there are more than one elements with the same name, use this function to pass along the index
 	 * @param elementName: the element attribute "name"

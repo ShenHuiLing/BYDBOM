@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="add current logging user to the project team"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="90.890">
+  <properties />
+  
+  
+            <testcase name="addProjectMember" time="90.890" classname="test.AddProjectMember" />
+      
+</testsuite>

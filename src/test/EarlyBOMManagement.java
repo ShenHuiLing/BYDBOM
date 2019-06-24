@@ -64,6 +64,7 @@ public class EarlyBOMManagement extends BTest{
 		  String Id;
 		  Id=eBomPage.otherElements.getLabelId(LabelStyle.TEXTFIELD, "Áã¼þºÅ");
 		  eBomPage.text.openTextBox(TextStyle.IDININPUT, Id, 1);
+		  Thread.sleep(1000);
 		  eBomPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getProperty("PartNum"));
 		  Thread.sleep(1000);
 		  eBomPage.button.clickButton("²éÑ¯",1);

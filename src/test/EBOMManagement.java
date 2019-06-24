@@ -50,7 +50,10 @@ public class EBOMManagement extends BTest {
 		  
 		  EBOMPage eBomPage=new EBOMPage(super.driver);
 		  
-		  //select project code and query the bom
+		  eBomPage.button.clickMaximizeButton();
+		  Thread.sleep(1000);
+		  
+		//select project code and query the bom
 		  String labelId=eBomPage.otherElements.getLabelId(LabelStyle.COMBO,"车型型号");
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
 		  String prjectCode=super.bcf.getProperty("ProjectCode");
@@ -77,7 +80,7 @@ public class EBOMManagement extends BTest {
 		  eBomPage.text.openTextBox(TextStyle.IDININPUT, Id, 1);
 		  eBomPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getProperty("PartNum"));
 		  Thread.sleep(1000);
-		  eBomPage.button.clickButton("查询",2);
+		  eBomPage.button.clickButton("查询",1);
 		  Thread.sleep(1000);
 		  String PopUpTableId=eBomPage.otherElements.getTableId(TableStyle.GRIDVIEW,2);
 		  eBomPage.option.clickCheckBox(PopUpTableId, 1,1);
@@ -87,22 +90,24 @@ public class EBOMManagement extends BTest {
 		  eBomPage.button.clickCloseButton(1);
 		  Thread.sleep(1000);
 		  
-		  //input quantity
 		  String mainDataTableId=eBomPage.otherElements.getTableId(TableStyle.GRIDVIEW,1);
-		  
+		 
+		  //input quantity
+		 
 		  Thread.sleep(1000);
-		  eBomPage.text.openTextBox(mainDataTableId, 2, 3);
+		  eBomPage.text.openTextBox(mainDataTableId, 2, 1);
 		  Thread.sleep(1000);
 		  eBomPage.text.inputText(TextStyle.NUMBERFIELD, super.bcf.getTimeStamp().substring(4));
 		  Thread.sleep(1000);
 		  
+		  
 		  //check if there is functional position code. if no, select functional position code
-		  if(eBomPage.text.isTextBoxEmpty(mainDataTableId, 2, 11)) {
-			  eBomPage.text.openTextBox(mainDataTableId, 2, 11);
+		  if(eBomPage.text.isTextBoxEmpty(mainDataTableId, 2, 27)) {
+			  eBomPage.text.openTextBox(mainDataTableId, 2, 27);
 			  Thread.sleep(1000);
 			  String MagnifyingGlassTableId=eBomPage.otherElements.getTableId(TableStyle.GANGTRIGGERFIELD, 2);
 			  eBomPage.button.clickMagnifyingGlass(TableStyle.GANGTRIGGERFIELD, MagnifyingGlassTableId,1,2);
-			  Thread.sleep(1000);
+			  Thread.sleep(3000);
 			  PopUpTableId=eBomPage.otherElements.getTableId(TableStyle.GRIDVIEW,2);
 			  eBomPage.option.clickCheckBox(PopUpTableId, 2,1);
 			  Thread.sleep(1000);
@@ -112,16 +117,17 @@ public class EBOMManagement extends BTest {
 		  
 		  
 		  //select the assemble workshop
-		  eBomPage.text.openTextBox(mainDataTableId, 2, 12);
+		  eBomPage.text.openTextBox(mainDataTableId, 2, 2);
 		  Thread.sleep(1000);
 		  eBomPage.option.expandDropdownList();
 		  Thread.sleep(1000);
 		  eBomPage.option.selectOption("总装车间");
 		  Thread.sleep(1000);
 		  
+		  
 		  //check if there is suggested source. If no, add it
-		  if(eBomPage.text.isTextBoxEmpty(mainDataTableId, 2, 23)) {
-			  eBomPage.text.openTextBox(mainDataTableId, 2, 23);
+		  if(eBomPage.text.isTextBoxEmpty(mainDataTableId, 2, 6)) {
+			  eBomPage.text.openTextBox(mainDataTableId, 2, 6);
 			  Thread.sleep(1000);
 			  eBomPage.option.expandDropdownList();
 			  Thread.sleep(1000);
@@ -129,14 +135,15 @@ public class EBOMManagement extends BTest {
 			  Thread.sleep(1000);
 		  }
 		  
+		  
 		  //select development strategy
-		  eBomPage.text.openTextBox(mainDataTableId, 2, 29);
+		  eBomPage.text.openTextBox(mainDataTableId, 2, 7);
 		  Thread.sleep(1000);
 		  eBomPage.option.expandDropdownList();
 		  Thread.sleep(1000);
 		  eBomPage.option.selectOption("新开发");
 		  Thread.sleep(2000);
-		  eBomPage.text.openTextBox(mainDataTableId, 2, 3);
+		  eBomPage.text.openTextBox(mainDataTableId, 2, 12);
 		  
 		  //save
 		  eBomPage.button.clickButton("保存");
@@ -156,7 +163,7 @@ public class EBOMManagement extends BTest {
 
   @AfterTest
   public void afterTest() {
-	  //super.close();
+	  super.close();
 	  
   }
 

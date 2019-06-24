@@ -175,6 +175,8 @@ public class BOtherElements {
 			searchString="gantcodetypecombobox-";
 		else if(ls==LabelStyle.GANTCOMBOBOX)
 			searchString="gantcombobox-";
+		else if(ls==LabelStyle.TEXTAREAFIELD)
+			searchString="textareafield-";
 		
 		xPath="//label[contains(@id, '" + searchString + "')]";
 		

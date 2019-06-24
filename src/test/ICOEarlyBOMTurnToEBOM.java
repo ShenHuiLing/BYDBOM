@@ -29,7 +29,7 @@ public class ICOEarlyBOMTurnToEBOM extends BTest{
 		  super.LoginBOM();
 		  Thread.sleep(10000);
 		  
-		  //open VCO window
+		  //open ICO window
 		  MainPage mainPage=new MainPage(super.driver);
 		  mainPage.mainMenu.hoverMenu("变更管理");
 		  Thread.sleep(2000);
@@ -38,7 +38,7 @@ public class ICOEarlyBOMTurnToEBOM extends BTest{
 		  
 		  BOMPublishPage bomPublishPage=new BOMPublishPage(super.driver);
 		  
-		  //create a new VCO
+		  //create a new ICO
 		  bomPublishPage.button.clickButton("新增");
 		  Thread.sleep(1000);
 		  String changeOrder=bomPublishPage.text.getValueFromTextBox();
@@ -58,7 +58,6 @@ public class ICOEarlyBOMTurnToEBOM extends BTest{
 		  
 		  //select type
 		  labelId=bomPublishPage.otherElements.getLabelId(LabelStyle.GANTCODETYPECOMBOBOX,"类型",1);
-		  System.out.println(labelId);
 		  bomPublishPage.option.expandDropdownList(DropDownListStyle.GANTCODETYPECOMBOBOX,labelId);
 		  Thread.sleep(2000);
 		  bomPublishPage.option.selectOption("早期BOM转工程BOM");

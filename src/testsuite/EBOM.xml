@@ -39,7 +39,22 @@
             <class name="test.ApproveChangeOrder"/>
         </classes>
     </test>
- 
+ 	<test name="apply a new part">
+        <classes>
+            <class name="test.PartApply"/>
+        </classes>
+    </test>
+    <test name="apply material code for the part">
+        <classes>
+            <class name="test.MaterialApply"/>
+        </classes>
+    </test>
+    <test name="add the new part to the EBOM">
+        <classes>
+            <class name="test.EBOMManagement"/>
+        </classes>
+    </test>
+    
 	<listeners>
         <listener class-name="org.uncommons.reportng.HTMLReporter" />
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
