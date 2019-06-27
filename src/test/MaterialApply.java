@@ -18,7 +18,7 @@ import org.testng.annotations.AfterTest;
 public class MaterialApply extends BTest{
   @Test
   public void ApplyMaterialNum() {
-try {
+	  try {
 		  
 		  //start BOM
 		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
@@ -36,7 +36,7 @@ try {
 		  mainPage.mainMenu.hoverMenu("零件物料管理");
 		  Thread.sleep(1000);
 		  mainPage.mainMenu.clickMenu("零件物料申请");
-		  Thread.sleep(3000);
+		  Thread.sleep(5000);
 		  
 		  MaterialPage materialPage=new MaterialPage(super.driver);
 		  //create a new material application form
@@ -116,7 +116,7 @@ try {
 		  
 		  //save the material application order
 		  materialPage.button.clickButton("保存");
-		  Thread.sleep(2000);
+		  Thread.sleep(5000);
 		  Assert.assertEquals(materialPage.otherElements.isEditFlagDisappeared(ListViewStyle.GRIDVIEW), true);
 		  
 		  //update the material application record in DB and assign a material number to the part

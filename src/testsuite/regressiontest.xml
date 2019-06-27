@@ -10,7 +10,21 @@
             <class name="test.MaterialApply"/>
         </classes>
     </test>
-    
+    <test name="add the pare to EBOM">
+        <classes>
+            <class name="test.EBOMManagement"/>
+        </classes>
+    </test>
+    <test name="publish the new added BOM line">
+        <classes>
+            <class name="test.PSPublishEBOM"/>
+        </classes>
+    </test>
+    <test name="approve PS to publish the BOM line">
+        <classes>
+            <class name="test.ApproveChangeOrder"/>
+        </classes>
+    </test>
  
 
  

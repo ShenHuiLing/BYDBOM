@@ -154,7 +154,7 @@ public class BTest {
 	/**
 	 * start approveal process, including switch to approval tab, select approver and start approval
 	 */
-	public void startApprovalProcess() {
+	public void startApprovalProcess() throws Exception {
 		try {
 				ApprovalPage approvalPage=new ApprovalPage(this.driver);
 				//click the approval tab
@@ -176,6 +176,7 @@ public class BTest {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 	

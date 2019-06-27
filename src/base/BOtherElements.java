@@ -300,7 +300,15 @@ public class BOtherElements {
 			int end=temp.indexOf("-triggerWrap");
 			Id=temp.substring(start, end);
 		}
-		
+		else if(ts==TableStyle.BOMMGMT_LOCATOR) {
+			searchString="bommgmt_locator-";
+			xPath="//table[contains(@id, '" + searchString + "') and contains(@id, 'triggerWrap')]";
+			elementList=this.driver.findElements(By.xpath(xPath));
+			temp=String.valueOf(elementList.get(index).getAttribute("id"));
+			int start=temp.indexOf(searchString)+searchString.length();
+			int end=temp.indexOf("-triggerWrap");
+			Id=temp.substring(start, end);
+		}
 		return Id;
 	}
 	

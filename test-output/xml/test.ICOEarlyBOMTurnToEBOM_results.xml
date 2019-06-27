@@ -4,10 +4,10 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="82.211">
+           time="86.128">
   <properties />
   
   
-            <testcase name="earLyBOMTurnToEBOM" time="82.211" classname="test.ICOEarlyBOMTurnToEBOM" />
+            <testcase name="earLyBOMTurnToEBOM" time="86.128" classname="test.ICOEarlyBOMTurnToEBOM" />
       
 </testsuite>

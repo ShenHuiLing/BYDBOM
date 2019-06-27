@@ -23,6 +23,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 import java.sql.*;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 
 public class BCommonFunction {
@@ -36,8 +38,17 @@ public class BCommonFunction {
     private Statement stmt;
     private ResultSet rs;
     
+    private static Logger logger=LogManager.getLogger();
+    
 	public static void main(String[] args)
 	{
+        logger.trace("我是trace");
+        logger.info("我是info信息");
+        logger.error("我是error");
+        logger.fatal("我是fatal");
+
+        logger.trace("退出程序.");
+		/*
 		BCommonFunction cf=new BCommonFunction();
 		//cf.readJasonFile(EnvJsonFile.TESTDATA);
 		//cf.getProperty("approver");
@@ -60,12 +71,13 @@ public class BCommonFunction {
 				}
 				System.out.println();
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		cf.closeDB();
-		
+		*/
 	}
 	
 	
