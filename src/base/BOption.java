@@ -77,9 +77,48 @@ public class BOption {
 	 * @param col: indicate which col should be clicked
 	 */
 	public void clickCheckBox(String id, int row, int col) {
-		String xPath="//table[contains(@id, 'gridview') and contains(@id, '" + id + "')]/tbody/tr[" + row + "]/td[" + col + "]/div/div";
+		String xPath="//table[contains(@id, '" + id + "')]/tbody/tr[" + row + "]/td[" + col + "]/div/div";
 		WebElement element=this.driver.findElement(By.xpath(xPath));
 		element.click();
+	}
+	
+	/**
+	 * input element which is check box role and have id. 
+	 * This method is used in part change content page
+	 * @param id: the id of the check box 
+	 */
+	public void clickCheckBoxById(String id) {
+		String xPath="//input[contains(@id, '" + id + "') and contains(@role, 'checkbox')]";
+		WebElement element=this.driver.findElement(By.xpath(xPath));
+		element.click();
+	}
+	
+	/**
+	 * this method is used for approver selection, where there are some nodes not required,
+	 * uncheck the check box
+	 * @param tableId: the table which contain the check box element
+	 * @param row: the row number
+	 * @param col: the column number
+	 */
+	public void unCheckCheckBoxByTable(String tableId, int row, int col) {
+		String xPath="//table[contains(@id, '" + tableId + "')]/tbody/tr[" + row + "]/td[" + col + "]/div/img";
+		WebElement element=this.driver.findElement(By.xpath(xPath));
+		if(element.getAttribute("class").contains("checked"))
+			element.click();
+	}
+	
+	/**
+	 * this method is used for approver selection, when there are some nodes required
+	 * check the check box
+	 * @param tableId
+	 * @param row
+	 * @param col
+	 */
+	public void checkCheckBoxByTable(String tableId, int row, int col) {
+		String xPath="//table[contains(@id, '" + tableId + "')]/tbody/tr[" + row + "]/td[" + col + "]/div/img";
+		WebElement element=this.driver.findElement(By.xpath(xPath));
+		if(!element.getAttribute("class").contains("checked"))
+			element.click();
 	}
 	
 	/**

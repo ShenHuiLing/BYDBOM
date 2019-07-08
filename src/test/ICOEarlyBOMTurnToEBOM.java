@@ -3,6 +3,7 @@ package test;
 import org.testng.annotations.Test;
 
 import base.BTest;
+import common.ChangeOrderType;
 import common.DropDownListStyle;
 import common.EnvJsonFile;
 import common.LabelStyle;
@@ -73,7 +74,7 @@ public class ICOEarlyBOMTurnToEBOM extends BTest{
 		  Thread.sleep(5000);
 		  
 		  //start approval process
-		  super.startApprovalProcess();
+		  super.startApprovalProcess(ChangeOrderType.BOM);
 		  
 		  Map<String, String> testData=new HashMap<String, String>();
 		  testData.put("ChangeOrder",changeOrder);

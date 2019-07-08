@@ -19,10 +19,12 @@ import org.w3c.dom.Document;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import java.util.Date; 
 
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -42,14 +44,20 @@ public class BCommonFunction {
     
 	public static void main(String[] args)
 	{
+
+		BCommonFunction cf=new BCommonFunction();
+		String filePath=cf.getProjectPath();
+		filePath=filePath + "\\test-output\\" + cf.getCurrentTime(); 
+		System.out.println(filePath);
+		/*
         logger.trace("我是trace");
         logger.info("我是info信息");
         logger.error("我是error");
         logger.fatal("我是fatal");
 
         logger.trace("退出程序.");
-		/*
-		BCommonFunction cf=new BCommonFunction();
+		
+
 		//cf.readJasonFile(EnvJsonFile.TESTDATA);
 		//cf.getProperty("approver");
 		//Map<String, String> testData1=new HashMap<String, String>();
@@ -81,7 +89,7 @@ public class BCommonFunction {
 	}
 	
 	
-	public void readJasonFile(EnvJsonFile ejf) {
+	public void readJasonFile(EnvJsonFile ejf) throws Exception {
 		
 		try {
 			 	String jsonpath;
@@ -95,11 +103,12 @@ public class BCommonFunction {
 			  		System.out.println("file doesn't exist");
 		}
 		catch(Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
+			throw e;
 		}
 	}
 	
-	public void writeJasonFile(EnvJsonFile ejf, Map<String, String> jsonData) {
+	public void writeJasonFile(EnvJsonFile ejf, Map<String, String> jsonData) throws Exception {
 		try {
 			String jsonpath;
 		 	String jsonname;
@@ -118,7 +127,8 @@ public class BCommonFunction {
 			
 		}
 		catch(Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
+			throw e;
 		}
 	}
 	
@@ -155,7 +165,17 @@ public class BCommonFunction {
 		return timeStamp;
 	}
 	
-
+	/**
+	 * 
+	 * @return return current time by the format "yyyymmddhhmmss"
+	 */
+	public String getCurrentTime() {
+		String currentTime="";
+		Date date = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+		currentTime=dateFormat.format(date);
+		return currentTime;
+	}
     
     /**
      * read XML file
@@ -175,7 +195,7 @@ public class BCommonFunction {
     		    }   
     }
     
-    public void connectDB(EnvJsonFile ejf, String env) {
+    public void connectDB(EnvJsonFile ejf, String env) throws Exception{
     	this.readJasonFile(ejf);
     	if(env.equals("integration")) {
     		String url=this.getProperty("integrationDB");
@@ -187,6 +207,7 @@ public class BCommonFunction {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				throw e;
 			}
 			
     	}

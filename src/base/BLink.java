@@ -47,10 +47,19 @@ public class BLink {
 	 * click the link by the specific text
 	 * @param text
 	 */
-	public boolean clickLinkByText(String text) {
-		boolean result=true;
+	public void clickLinkByText(String text) throws Exception {
 		try {
 			this.driver.findElement(By.linkText(text)).click();
+		}
+		catch(Exception e){
+			throw e;
+		}
+	}
+	
+	public boolean isLinkExist(String text) {
+		boolean result=true;
+		try {
+			this.driver.findElement(By.linkText(text));
 		}
 		catch(Exception e){
 			result=false;

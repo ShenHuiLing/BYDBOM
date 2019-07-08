@@ -75,6 +75,9 @@ public class EBOMManagement extends BTest {
 		  Thread.sleep(1000);
 		  
 		  //from the part selector, choose a part
+		  String partNum=super.bcf.getProperty("PartNum");
+		  super.selectPartFromPartSelector(partNum, 2, true);
+		  /*
 		  String Id;
 		  Id=eBomPage.otherElements.getLabelId(LabelStyle.TEXTFIELD, "Áã¼þºÅ");
 		  eBomPage.text.openTextBox(TextStyle.IDININPUT, Id, 1);
@@ -89,7 +92,7 @@ public class EBOMManagement extends BTest {
 		  Thread.sleep(1000);
 		  eBomPage.button.clickCloseButton(1);
 		  Thread.sleep(1000);
-		  
+		  */
 		  String mainDataTableId=eBomPage.otherElements.getTableId(TableStyle.GRIDVIEW,1);
 		 
 		  //input quantity
@@ -100,7 +103,7 @@ public class EBOMManagement extends BTest {
 		  eBomPage.text.inputText(TextStyle.NUMBERFIELD, super.bcf.getTimeStamp().substring(4));
 		  Thread.sleep(1000);
 		  
-		  
+		  String PopUpTableId;
 		  //check if there is functional position code. if no, select functional position code
 		  if(eBomPage.text.isTextBoxEmpty(mainDataTableId, 2, 27)) {
 			  eBomPage.text.openTextBox(mainDataTableId, 2, 27);
@@ -114,6 +117,7 @@ public class EBOMManagement extends BTest {
 			  eBomPage.button.clickButton("Ñ¡Ôñ");
 			  Thread.sleep(2000);
 		  }
+		  
 		  
 		  
 		  //select the assemble workshop

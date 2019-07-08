@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Publish the part change by PS order"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="150.468">
+  <properties />
+  
+  
+            <testcase name="PSpublishPartChange" time="150.468" classname="test.PSChangePart" />
+      
+</testsuite>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="approve PS to publish the BOM line"
+<testsuite name="Publish the VCO"
            tests="1"
            failures="0"
            errors="0"
            skipped="0"
-           time="68.931">
+           time="46.120">
   <properties />
   
   
-            <testcase name="ApproveCO" time="68.931" classname="test.ApproveChangeOrder" />
+            <testcase name="ApproveCO" time="46.120" classname="test.ApproveChangeOrder" />
       
 </testsuite>

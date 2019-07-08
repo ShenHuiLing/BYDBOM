@@ -217,6 +217,8 @@ public class BOtherElements {
 			searchString="gantcodetypecombobox-";
 		else if(ls==LabelStyle.GANTCOMBOBOX)
 			searchString="gantcombobox-";
+		else if(ls==LabelStyle.CHECKBOXFIELD)
+			searchString="checkboxfield-";
 		
 		xPath="//label[contains(@id, '" + searchString + "')]";
 		
@@ -313,7 +315,7 @@ public class BOtherElements {
 	}
 	
 	/**
-	 * 
+	 * this method is for the approver table for approver selection
 	 * @return the approver table Id
 	 */
 	public String getApproverTableId() {
@@ -332,6 +334,23 @@ public class BOtherElements {
 		xPath="//span[contains(@id, '" + id + "')]/../../../../../following-sibling::div[1]/div/div[2]/div/table";
 		WebElement element=this.driver.findElement(By.xpath(xPath));
 		return element.getAttribute("id");
+	}
+	
+	/**
+	 * this method is looking for the task name by the change order link
+	 * @return table Id for the pending tasks table
+	 */
+	public String getTaskName(String linkText) {
+		try {
+			WebElement element=this.driver.findElement(By.linkText(linkText));
+			String onClickId=element.getAttribute("onclick");
+			String xPath="//a[contains(@onclick, \"" + onClickId + "\")]/../../following-sibling::td[2]/div";
+			element=this.driver.findElement(By.xpath(xPath));
+			return element.getText();
+		}
+		catch(Exception e) {
+			return "";
+		}
 	}
 	
 	/**

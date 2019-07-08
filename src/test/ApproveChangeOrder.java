@@ -14,15 +14,18 @@ import page.MainPage;
 import page.PendingTaskPage;
 
 import org.testng.annotations.BeforeTest;
+
+import java.io.IOException;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
 public class ApproveChangeOrder extends BTest {
   @Test()
-  public void ApproveCO() {
-	//start BOM
-	  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
+  public void ApproveCO() throws IOException {
 	  try {
+		  //start BOM
+		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
 		  Thread.sleep(5000);
 		  
 		  //login BOM
@@ -30,6 +33,7 @@ public class ApproveChangeOrder extends BTest {
 		  Thread.sleep(5000);
 		  
 		  //open pending task window
+		  logger.info("open pending task window");
 		  MainPage mainPage=new MainPage(super.driver);
 		  mainPage.mainMenu.hoverMenu("个人中心");
 		  Thread.sleep(2000);
@@ -40,13 +44,23 @@ public class ApproveChangeOrder extends BTest {
 		  PendingTaskPage pendingTaskPage=new PendingTaskPage(super.driver);
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
 		  String changeOrder=super.bcf.getProperty("ChangeOrder");
-		  while(pendingTaskPage.link.clickLinkByText(changeOrder)) {
+		  String taskName;
+		  
+		  logger.info("start to approve the change order");
+		  while(pendingTaskPage.link.isLinkExist(changeOrder)) {
+			  taskName=pendingTaskPage.otherElements.getTaskName(changeOrder);
+			  logger.info("open the change order");
+			  pendingTaskPage.link.clickLinkByText(changeOrder);
 			  Thread.sleep(2000);
-			  super.approveProcess();
+			  super.approveProcess(taskName);
+			  
 		  }
+		  
 		  
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
+		super.TakeSnap();
+		logger.error(e.getMessage());
 		e.printStackTrace();
 		Assert.assertEquals(false, true);
 	}

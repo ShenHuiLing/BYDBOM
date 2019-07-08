@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="update VPPD"
+<testsuite name="add a VPPD node"
            tests="1"
            failures="0"
            errors="0"
            skipped="0"
-           time="63.376">
+           time="70.550">
   <properties />
   
   
-            <testcase name="AddVPPD" time="63.376" classname="test.VPPDManagement" />
+            <testcase name="AddVPPD" time="70.550" classname="test.VPPDManagement" />
       
 </testsuite>

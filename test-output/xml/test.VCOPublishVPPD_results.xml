@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="publish VPPD with VCO"
+<testsuite name="Assign the latest VPPD in VCO"
            tests="1"
            failures="0"
            errors="0"
            skipped="0"
-           time="63.350">
+           time="69.751">
   <properties />
   
   
-            <testcase name="SubmitVCO" time="63.350" classname="test.VCOPublishVPPD" />
+            <testcase name="SubmitVCO" time="69.751" classname="test.VCOPublishVPPD" />
       
 </testsuite>

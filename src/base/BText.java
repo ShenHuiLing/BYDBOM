@@ -110,7 +110,12 @@ public class BText {
 	 * @param text
 	 */
 	public void inputText(TextStyle ts, String elementName, String text) {
-		String xPath="//textarea[contains(@name, '" + elementName + "')]";
+		String xPath="";
+		if(ts==TextStyle.TEXTAREAFIELD)
+			xPath="//textarea[contains(@name, '" + elementName + "')]";
+		else if(ts==TextStyle.TEXTFIELD)
+			xPath="//input[contains(@name, '" + elementName + "')]";
+		
 		WebElement element=this.driver.findElement(By.xpath(xPath));
 		element.sendKeys(text);
 	}
