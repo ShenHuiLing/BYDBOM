@@ -12,23 +12,26 @@ import page.MainPage;
 import page.ProjectMemberPage;
 
 import org.testng.annotations.BeforeTest;
+
+import java.io.IOException;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
 public class AddProjectMember extends BTest{
   @Test
-  public void addProjectMember() {
+  public void addProjectMember() throws IOException {
 	  try {
-		//start BOM
+		  //start BOM
 		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
 		  Thread.sleep(10000);
 		  
-		  		
 		  //login BOM
 		  String username=super.LoginBOM();
 		  Thread.sleep(10000);
 		  
 		  //open project member window
+		  logger.info("open project member");
 		  MainPage mainPage=new MainPage(super.driver);
 		  mainPage.mainMenu.hoverMenu("基础数据管理");
 		  Thread.sleep(2000);
@@ -39,7 +42,7 @@ public class AddProjectMember extends BTest{
 		  
 		  
 		  //select vehicle mode code
-		
+		  logger.info("select vehicle mode code and query the project member records");
 		  String labelId=projectMemberPage.otherElements.getLabelId(LabelStyle.COMBO,"车型型号");
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
 		  String prjectCode=super.bcf.getProperty("ProjectCode");
@@ -51,6 +54,7 @@ public class AddProjectMember extends BTest{
 		  Thread.sleep(1000);
 		  
 		  //add a member
+		  logger.info("start editting");
 		  projectMemberPage.button.clickButton("进入编辑");
 		  Thread.sleep(1000);
 		  
@@ -58,6 +62,8 @@ public class AddProjectMember extends BTest{
 		  this.addMemberByRole(projectMemberPage, "配置工程师", username);
 		  
 	  }catch(Exception e) {
+		  super.TakeSnap();
+		  logger.error(e.getMessage());
 		  e.printStackTrace();
 		  Assert.assertEquals(false, true);
 	  }
@@ -67,12 +73,14 @@ public class AddProjectMember extends BTest{
   private void addMemberByRole(ProjectMemberPage projectMemberPage, String role, String username) throws Exception {
 	  
 	  try {
+		  logger.info("add a new member");
 		  projectMemberPage.button.clickButton("添加");
 		  Thread.sleep(1000);
 		  
 		  String projectMemberTableId;
 		  
 		  //set the role as "product engineer" for the new member
+		  logger.info("select the role");
 		  projectMemberTableId=projectMemberPage.otherElements.getTableId(TableStyle.GRIDVIEW, 0);
 		  //select the base belong to
 		  projectMemberPage.text.openTextBox(projectMemberTableId, 1, 4);
@@ -88,6 +96,7 @@ public class AddProjectMember extends BTest{
 		  String PopUpTableId;
 		  String MagnifyingGlassTableId;
 		  
+		  logger.info("assign the user to the project role");
 		  projectMemberPage.text.openTextBox(projectMemberTableId, 1, 7);
 		  Thread.sleep(1000);
 		  MagnifyingGlassTableId=projectMemberPage.otherElements.getTableId(TableStyle.USERTRIGGERFIELD, 1);
@@ -107,8 +116,9 @@ public class AddProjectMember extends BTest{
 		  Thread.sleep(1000);
 		  
 		  //save the project member
+		  logger.info("save the project member");
 		  projectMemberPage.button.clickButton("保存");
-		  Thread.sleep(1000);
+		  Thread.sleep(5000);
 	  }catch(Exception e) {
 		  e.printStackTrace();
 		  throw e;

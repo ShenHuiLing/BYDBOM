@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--apply a new part-->
+<!--assign the part to PS to publish-->
+<!--approve the PS-->
 <suite name="Regression Test">
     <test name="apply a new part">
         <classes>

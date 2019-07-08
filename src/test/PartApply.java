@@ -166,6 +166,7 @@ public class PartApply extends BTest{
 		  Map<String, String> testData=new HashMap<String, String>();
 		  testData.put("PartNum",partNum);
 		  super.bcf.writeJasonFile(EnvJsonFile.TESTDATA, testData);
+		  logger.info("part number: " + partNum);
 		  
 		  //close the part application order window and publish the part application form
 		  logger.info("close the part application");

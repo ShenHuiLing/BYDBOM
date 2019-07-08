@@ -12,24 +12,27 @@ import page.MainPage;
 import page.MaterialPage;
 
 import org.testng.annotations.BeforeTest;
+
+import java.io.IOException;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
 public class MaterialApply extends BTest{
   @Test
-  public void ApplyMaterialNum() {
+  public void ApplyMaterialNum() throws IOException {
 	  try {
 		  
 		  //start BOM
 		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
 		  Thread.sleep(10000);
 		  
-		  		
 		  //login BOM
 		  super.LoginBOM();
 		  Thread.sleep(10000);
 		  
 		  //open material application window
+		  logger.info("open part material application window");
 		  MainPage mainPage=new MainPage(super.driver);
 		  mainPage.mainMenu.hoverMenu("物料管理");
 		  Thread.sleep(1000);
@@ -40,8 +43,10 @@ public class MaterialApply extends BTest{
 		  
 		  MaterialPage materialPage=new MaterialPage(super.driver);
 		  //create a new material application form
+		  logger.info("start editting");
 		  materialPage.button.clickButton("进入编辑");
 		  Thread.sleep(1000);
+		  logger.info("add a new part");
 		  materialPage.button.clickButton("添加零件");
 		  Thread.sleep(1000);
 		  
@@ -53,6 +58,7 @@ public class MaterialApply extends BTest{
 		  materialApplicationTableId=materialPage.otherElements.getTableId(TableStyle.GRIDVIEW, 0);
 		  
 		  //select part
+		  logger.info("from the test data, get the part for using and query the part in the part selector");
 		  String Id;
 		  Id=materialPage.otherElements.getLabelId(LabelStyle.TEXTFIELD, "零件号");
 		  materialPage.text.openTextBox(TextStyle.IDININPUT, Id, 1);
@@ -70,6 +76,7 @@ public class MaterialApply extends BTest{
 		  materialApplicationTableId=materialPage.otherElements.getTableId(TableStyle.GRIDVIEW, 0);
 		  
 		  //select the base belong to
+		  logger.info("select thr plant");
 		  materialPage.text.openTextBox(materialApplicationTableId, 1, 7);
 		  Thread.sleep(1000);
 		  materialPage.option.expandDropdownList();
@@ -80,6 +87,7 @@ public class MaterialApply extends BTest{
 		  materialApplicationTableId=materialPage.otherElements.getTableId(TableStyle.GRIDVIEW, 1);
 		  
 		  //select material group
+		  logger.info("select material group");
 		  materialPage.text.openTextBox(materialApplicationTableId, 1, 1);
 		  Thread.sleep(1000);
 		  materialPage.option.expandDropdownList();
@@ -88,6 +96,7 @@ public class MaterialApply extends BTest{
 		  Thread.sleep(2000);
 		  
 		  //select manufacture code
+		  logger.info("select manufacture code");
 		  materialPage.text.openTextBox(materialApplicationTableId, 1, 2);
 		  Thread.sleep(1000);
 		  materialPage.option.expandDropdownList();
@@ -96,6 +105,7 @@ public class MaterialApply extends BTest{
 		  Thread.sleep(2000);
 		  
 		  //select tax code
+		  logger.info("select tax code");
 		  materialPage.text.openTextBox(materialApplicationTableId, 1, 3);
 		  Thread.sleep(1000);
 		  magnifyingGlassTableId=materialPage.otherElements.getTableId(TableStyle.GANGTRIGGERFIELD, 1);
@@ -115,11 +125,13 @@ public class MaterialApply extends BTest{
 		  Thread.sleep(1000);
 		  
 		  //save the material application order
+		  logger.info("save the part material application order");
 		  materialPage.button.clickButton("保存");
 		  Thread.sleep(5000);
 		  Assert.assertEquals(materialPage.otherElements.isEditFlagDisappeared(ListViewStyle.GRIDVIEW), true);
 		  
 		  //update the material application record in DB and assign a material number to the part
+		  logger.info("as there is no PNAS interface in test environment, directly update the material code in DB");
 		  super.bcf.connectDB(EnvJsonFile.BASICFILE, "integration");
 		  String sql="update CUST.CUST_MATERIAL_INFO\n" + 
 		  		"set \n" + 
@@ -144,6 +156,8 @@ public class MaterialApply extends BTest{
 			  	  
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
+		super.TakeSnap();
+		logger.error(e.getMessage());
 		e.printStackTrace();
 		Assert.assertEquals(false, true);
 	}

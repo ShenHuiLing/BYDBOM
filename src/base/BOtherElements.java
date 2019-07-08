@@ -49,7 +49,7 @@ public class BOtherElements {
 		int i;
 		for(i=0;i<elementList.size();i++)
 			{	
-				System.out.println(elementList.get(i).getText());
+				//System.out.println(elementList.get(i).getText());
 			    if(elementList.get(i).getText().contains(text)){
 			    	elementList.get(i).click();
 				    break;
