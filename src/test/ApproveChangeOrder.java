@@ -25,12 +25,12 @@ public class ApproveChangeOrder extends BTest {
   public void ApproveCO() throws IOException {
 	  try {
 		  //start BOM
-		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
-		  Thread.sleep(5000);
+		  super.StartBOM(EnvJsonFile.BASICFILE, "local");
+		  Thread.sleep(15000);
 		  
 		  //login BOM
 		  super.LoginBOMAsApprover();
-		  Thread.sleep(5000);
+		  Thread.sleep(20000);
 		  
 		  //open pending task window
 		  logger.info("open pending task window");
@@ -38,7 +38,7 @@ public class ApproveChangeOrder extends BTest {
 		  mainPage.mainMenu.hoverMenu("个人中心");
 		  Thread.sleep(2000);
 		  mainPage.mainMenu.clickMenu("待处理任务");
-		  Thread.sleep(5000);
+		  Thread.sleep(10000);
 
 		  //click the change order link and keep approving the order till the approver completes his task
 		  PendingTaskPage pendingTaskPage=new PendingTaskPage(super.driver);
@@ -49,7 +49,7 @@ public class ApproveChangeOrder extends BTest {
 		  logger.info("start to approve the change order");
 		  while(pendingTaskPage.link.isLinkExist(changeOrder)) {
 			  taskName=pendingTaskPage.otherElements.getTaskName(changeOrder);
-			  logger.info("open the change order");
+			  logger.info("open the change order for task: " + taskName);
 			  pendingTaskPage.link.clickLinkByText(changeOrder);
 			  Thread.sleep(2000);
 			  super.approveProcess(taskName);

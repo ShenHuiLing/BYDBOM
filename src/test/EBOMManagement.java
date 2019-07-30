@@ -14,6 +14,9 @@ import page.EBOMPage;
 import page.MainPage;
 
 import org.testng.annotations.BeforeTest;
+
+import java.io.IOException;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
@@ -27,19 +30,19 @@ import org.testng.annotations.AfterTest;
  */
 public class EBOMManagement extends BTest {
   @Test
-  public void EBOMAddPart() {
+  public void EBOMAddPart() throws IOException {
 	  try {
 		  
 		  //start BOM
 		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
-		  Thread.sleep(10000);
+		  Thread.sleep(15000);
 		  
-		  		
 		  //login BOM
 		  super.LoginBOM();
-		  Thread.sleep(10000);
+		  Thread.sleep(20000);
 		  
 		  //open EBOM window
+		  logger.info("open EBOM window");
 		  MainPage mainPage=new MainPage(super.driver);
 		  mainPage.mainMenu.hoverMenu("BOM管理");
 		  Thread.sleep(2000);
@@ -53,7 +56,8 @@ public class EBOMManagement extends BTest {
 		  eBomPage.button.clickMaximizeButton();
 		  Thread.sleep(1000);
 		  
-		//select project code and query the bom
+		  //select project code and query the bom
+		  logger.info("select vehicle mode code");
 		  String labelId=eBomPage.otherElements.getLabelId(LabelStyle.COMBO,"车型型号");
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
 		  String prjectCode=super.bcf.getProperty("ProjectCode");
@@ -67,8 +71,10 @@ public class EBOMManagement extends BTest {
 		  eBomPage.option.clickCheckBox(0,ListViewStyle.GRIDVIEW);
 		  
 		  //add a part
+		  logger.info("start editting");
 		  eBomPage.button.clickButton("进入编辑");
 		  Thread.sleep(1000);
+		  logger.info("add a new node");
 		  eBomPage.button.clickButton("新增");
 		  Thread.sleep(1000);
 		  eBomPage.button.clickChildButton("新增子节点");
@@ -96,7 +102,7 @@ public class EBOMManagement extends BTest {
 		  String mainDataTableId=eBomPage.otherElements.getTableId(TableStyle.GRIDVIEW,1);
 		 
 		  //input quantity
-		 
+		  logger.info("input quantity");
 		  Thread.sleep(1000);
 		  eBomPage.text.openTextBox(mainDataTableId, 2, 1);
 		  Thread.sleep(1000);
@@ -106,6 +112,7 @@ public class EBOMManagement extends BTest {
 		  String PopUpTableId;
 		  //check if there is functional position code. if no, select functional position code
 		  if(eBomPage.text.isTextBoxEmpty(mainDataTableId, 2, 27)) {
+			  logger.info("select functional position code");
 			  eBomPage.text.openTextBox(mainDataTableId, 2, 27);
 			  Thread.sleep(1000);
 			  String MagnifyingGlassTableId=eBomPage.otherElements.getTableId(TableStyle.GANGTRIGGERFIELD, 2);
@@ -121,6 +128,7 @@ public class EBOMManagement extends BTest {
 		  
 		  
 		  //select the assemble workshop
+		  logger.info("select assemble workshop");
 		  eBomPage.text.openTextBox(mainDataTableId, 2, 2);
 		  Thread.sleep(1000);
 		  eBomPage.option.expandDropdownList();
@@ -131,6 +139,7 @@ public class EBOMManagement extends BTest {
 		  
 		  //check if there is suggested source. If no, add it
 		  if(eBomPage.text.isTextBoxEmpty(mainDataTableId, 2, 6)) {
+			  logger.info("select suggested source");
 			  eBomPage.text.openTextBox(mainDataTableId, 2, 6);
 			  Thread.sleep(1000);
 			  eBomPage.option.expandDropdownList();
@@ -141,6 +150,7 @@ public class EBOMManagement extends BTest {
 		  
 		  
 		  //select development strategy
+		  logger.info("select development strategy");
 		  eBomPage.text.openTextBox(mainDataTableId, 2, 7);
 		  Thread.sleep(1000);
 		  eBomPage.option.expandDropdownList();
@@ -150,12 +160,15 @@ public class EBOMManagement extends BTest {
 		  eBomPage.text.openTextBox(mainDataTableId, 2, 12);
 		  
 		  //save
+		  logger.info("save");
 		  eBomPage.button.clickButton("保存");
 		  Thread.sleep(2000);
 		  
 		  Assert.assertEquals(eBomPage.otherElements.isEditFlagDisappeared(ListViewStyle.GRIDVIEW), true);
 			  	  
 	} catch (Exception e) {
+		super.TakeSnap();
+		logger.error(e.getMessage());
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		Assert.assertEquals(false, true);

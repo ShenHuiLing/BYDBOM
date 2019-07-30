@@ -40,11 +40,11 @@ public class PartApply extends BTest{
 	  try {
 		//start BOM
 		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
-		  Thread.sleep(5000);
+		  Thread.sleep(30000);
 		  
 		  //login BOM
 		  super.LoginBOM();
-		  Thread.sleep(10000);
+		  Thread.sleep(30000);
 		  
 		  //open product spectrum window
 		  logger.info("open part application management window");
@@ -52,7 +52,7 @@ public class PartApply extends BTest{
 		  mainPage.mainMenu.hoverMenu("零部件管理");
 		  Thread.sleep(2000);
 		  mainPage.mainMenu.clickMenu("零件申请单管理");
-		  Thread.sleep(5000);
+		  Thread.sleep(20000);
 		  
 		  //create a new part application order
 		  logger.info("create a new part application form");
@@ -206,7 +206,7 @@ public class PartApply extends BTest{
 
   @AfterTest
   public void afterTest() {
-	  super.close();
+	  //super.close();
   }
 
 }

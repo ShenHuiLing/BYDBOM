@@ -2,7 +2,7 @@
 <!--apply a new part-->
 <!--assign the part to PS to publish-->
 <!--approve the PS-->
-<suite name="Regression Test">
+<suite name="part change Test">
     <test name="apply a new part">
         <classes>
             <class name="test.PartApply"/>

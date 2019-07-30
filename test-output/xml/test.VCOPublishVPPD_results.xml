@@ -4,10 +4,10 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="69.751">
+           time="120.686">
   <properties />
   
   
-            <testcase name="SubmitVCO" time="69.751" classname="test.VCOPublishVPPD" />
+            <testcase name="SubmitVCO" time="120.686" classname="test.VCOPublishVPPD" />
       
 </testsuite>

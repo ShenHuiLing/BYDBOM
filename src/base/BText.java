@@ -86,7 +86,7 @@ public class BText {
 	 * @param text
 	 */
 	public void inputText(String tableId, int row, int col, String text) {
-		String xPath="//table[contains(@id, 'gridview') and contains(@id, '" + tableId + "')]/tbody/tr[" + row + "]/td[" + col + "]/div";
+		String xPath="//table[contains(@id, '" + tableId + "')]/tbody/tr[" + row + "]/td[" + col + "]/div";
 		//String xPath="//table[contains(@id, '" + tableId + "')]/tbody/tr[" + row + "]/td[" + col + "]";
 		WebElement element=this.driver.findElement(By.xpath(xPath));
 		element.sendKeys(text);
@@ -129,6 +129,7 @@ public class BText {
 		String xPath="//input[contains(@name, '" + elementName + "')]";
 		List<WebElement> elements=this.driver.findElements(By.xpath(xPath));
 		if(elements.size()>0) {
+			elements.get(index).clear();
 			elements.get(index).sendKeys(text);
 		}
 	}

@@ -300,12 +300,31 @@ public class BTest {
 					approvalPage.text.inputText(TextStyle.TEXTFIELD,"entity.actualRemark",this.bcf.getTimeStamp().substring(4));
 					Thread.sleep(1000);
 					
-					logger.info("fill the negotiation change price comment");
+					logger.info("fill the cost balance method");
 					labelId=approvalPage.otherElements.getLabelId(LabelStyle.CHECKBOXFIELD,"单独支付",0);
 					approvalPage.option.clickCheckBoxById(labelId);
 					Thread.sleep(1000);
 					
+					logger.info("fill the unconsumed material review");
+					labelId=approvalPage.otherElements.getLabelId(LabelStyle.TEXTFIELD,"呆滞物料评估",0);
+					approvalPage.text.openTextBox(TextStyle.IDININPUT, labelId, 1);
+					Thread.sleep(1000);
+					approvalPage.text.inputText(TextStyle.TEXTFIELD,"entity.sluggishMaterial",this.bcf.getTimeStamp().substring(4));
+					Thread.sleep(1000);
+					
 					logger.info("save the negotiation price information");
+					approvalPage.button.clickButton("保存");
+					Thread.sleep(10000);
+					
+				}else if(taskName.equalsIgnoreCase("品质会签")) {
+					logger.info("as quality approver, it needs to asses the serious index");
+					  //select the change type
+					  logger.info("select the serious index");
+					  String labelId=approvalPage.otherElements.getLabelId(LabelStyle.GANTCODETYPECOMBOBOX,"是否认真度导致变更",0);
+					  approvalPage.option.expandDropdownList(DropDownListStyle.GANTCODETYPECOMBOBOX,labelId);
+					  Thread.sleep(2000);
+					  approvalPage.option.selectOption("是");
+					  Thread.sleep(1000);
 					approvalPage.button.clickButton("保存");
 					Thread.sleep(10000);
 					

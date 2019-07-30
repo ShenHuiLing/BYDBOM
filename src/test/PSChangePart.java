@@ -27,10 +27,10 @@ public class PSChangePart extends BTest{
 	  try {
 		  //start BOM
 		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
-		  Thread.sleep(10000);
+		  Thread.sleep(15000);
 		  //login BOM
 		  super.LoginBOM();
-		  Thread.sleep(10000);
+		  Thread.sleep(20000);
 		  
 		  //open PS window
 		  logger.info("open PS management window");
@@ -38,7 +38,7 @@ public class PSChangePart extends BTest{
 		  mainPage.mainMenu.hoverMenu("变更管理");
 		  Thread.sleep(2000);
 		  mainPage.mainMenu.clickMenu("评审报告管理");
-		  Thread.sleep(5000);
+		  Thread.sleep(10000);
 		  
 		  PSPage psPage=new PSPage(super.driver);
 		  
@@ -50,20 +50,20 @@ public class PSChangePart extends BTest{
 		  logger.info("new PS number: " + changeOrder);
 		  
 		  String labelId;
-		  String prjectCode;
+		  String projectCode;
 		  String partNum;
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
-		  prjectCode=super.bcf.getProperty("ProjectCode");
+		  projectCode=super.bcf.getProperty("ProjectCode");
 		  partNum=super.bcf.getProperty("PartNum");
-		  logger.info("vehicle mode code: " + prjectCode);
-		  logger.info("part number: " + prjectCode);
+		  logger.info("vehicle mode code: " + projectCode);
+		  logger.info("part number: " + projectCode);
 		  
 		  //select the vehicle mode code
 		  logger.info("select the vehicle mode code");
 		  labelId=psPage.otherElements.getLabelId(LabelStyle.GANTCOMBOBOX,"车型型号",1);
 		  psPage.option.expandDropdownList(DropDownListStyle.GANTCOMBOBOX,labelId);
 		  Thread.sleep(2000);
-		  psPage.option.selectOption(prjectCode);
+		  psPage.option.selectOption(projectCode);
 		  Thread.sleep(1000);
 		  
 		  //select the change type

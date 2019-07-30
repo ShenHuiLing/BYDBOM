@@ -4,10 +4,10 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="150.468">
+           time="195.102">
   <properties />
   
   
-            <testcase name="PSpublishPartChange" time="150.468" classname="test.PSChangePart" />
+            <testcase name="PSpublishPartChange" time="195.102" classname="test.PSChangePart" />
       
 </testsuite>

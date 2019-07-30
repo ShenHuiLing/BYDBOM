@@ -311,6 +311,15 @@ public class BOtherElements {
 			int end=temp.indexOf("-triggerWrap");
 			Id=temp.substring(start, end);
 		}
+		else if(ts==TableStyle.TREEVIEW) {
+			searchString="treeview-";
+			xPath="//table[contains(@id, '" + searchString + "')]";
+			elementList=this.driver.findElements(By.xpath(xPath));
+			temp=String.valueOf(elementList.get(index).getAttribute("id"));
+			int start=temp.indexOf(searchString)+searchString.length();
+			int end=temp.indexOf("-table");
+			Id=temp.substring(start, end);
+		}
 		return Id;
 	}
 	

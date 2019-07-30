@@ -30,11 +30,11 @@ public class VPPDManagement extends BTest {
 		  
 		  //start BOM
 		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
-		  Thread.sleep(10000);
+		  Thread.sleep(15000);
 		
 		  //login BOM
 		  super.LoginBOM();
-		  Thread.sleep(10000);
+		  Thread.sleep(20000);
 		  
 		  //open product structure window
 		  logger.info("open product structure management window");

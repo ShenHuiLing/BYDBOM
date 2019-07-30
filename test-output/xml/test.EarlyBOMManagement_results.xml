@@ -4,10 +4,10 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="107.550">
+           time="123.392">
   <properties />
   
   
-            <testcase name="AddPartInEarlyBOM" time="107.550" classname="test.EarlyBOMManagement" />
+            <testcase name="AddPartInEarlyBOM" time="123.392" classname="test.EarlyBOMManagement" />
       
 </testsuite>

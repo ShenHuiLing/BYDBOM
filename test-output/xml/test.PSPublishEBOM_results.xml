@@ -4,10 +4,10 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="108.455">
+           time="140.175">
   <properties />
   
   
-            <testcase name="publishEBOMWithECO" time="108.455" classname="test.PSPublishEBOM" />
+            <testcase name="publishEBOMWithECO" time="140.175" classname="test.PSPublishEBOM" />
       
 </testsuite>

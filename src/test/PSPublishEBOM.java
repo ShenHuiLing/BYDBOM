@@ -14,6 +14,7 @@ import page.PSPage;
 
 import org.testng.annotations.BeforeTest;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ import org.testng.annotations.AfterTest;
 
 public class PSPublishEBOM extends BTest{
   @Test
-  public void publishEBOMWithECO() {
+  public void publishEBOMWithECO() throws IOException {
 	  try {
 		  //start BOM
 		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
@@ -33,6 +34,7 @@ public class PSPublishEBOM extends BTest{
 		  Thread.sleep(10000);
 		  
 		  //open PS window
+		  logger.info("open PS management window");
 		  MainPage mainPage=new MainPage(super.driver);
 		  mainPage.mainMenu.hoverMenu("变更管理");
 		  Thread.sleep(2000);
@@ -42,6 +44,7 @@ public class PSPublishEBOM extends BTest{
 		  PSPage psPage=new PSPage(super.driver);
 		  
 		  //create a new PS
+		  logger.info("create a new PS");
 		  psPage.button.clickButton("新增");
 		  Thread.sleep(1000);
 		  String changeOrder=psPage.text.getValueFromTextBox();
@@ -55,6 +58,7 @@ public class PSPublishEBOM extends BTest{
 		  partNum=super.bcf.getProperty("PartNum");
 		  
 		  //select the vehicle mode code
+		  logger.info("select vehicle mode code");
 		  labelId=psPage.otherElements.getLabelId(LabelStyle.GANTCOMBOBOX,"车型型号",1);
 		  psPage.option.expandDropdownList(DropDownListStyle.GANTCOMBOBOX,labelId);
 		  Thread.sleep(2000);
@@ -62,6 +66,7 @@ public class PSPublishEBOM extends BTest{
 		  Thread.sleep(1000);
 		  
 		  //select the change type
+		  logger.info("select change type as only BOM change");
 		  labelId=psPage.otherElements.getLabelId(LabelStyle.GANTCODETYPECOMBOBOX,"变更类型",1);
 		  psPage.option.expandDropdownList(DropDownListStyle.GANTCODETYPECOMBOBOX,labelId);
 		  Thread.sleep(2000);
@@ -69,13 +74,15 @@ public class PSPublishEBOM extends BTest{
 		  Thread.sleep(1000);
 		  
 		  //select the change source
+		  logger.info("select change source");
 		  labelId=psPage.otherElements.getLabelId(LabelStyle.GANTCODETYPECOMBOBOX,"变更来源",0);
 		  psPage.option.expandDropdownList(DropDownListStyle.GANTCODETYPECOMBOBOX,labelId);
 		  Thread.sleep(2000);
 		  psPage.option.selectOption("公司定义");
 		  Thread.sleep(1000);
 		  
-		  //select the change source
+		  //select the stage
+		  logger.info("select stage");
 		  labelId=psPage.otherElements.getLabelId(LabelStyle.GANTCODETYPECOMBOBOX,"评审阶段",0);
 		  psPage.option.expandDropdownList(DropDownListStyle.GANTCODETYPECOMBOBOX,labelId);
 		  Thread.sleep(2000);
@@ -84,6 +91,7 @@ public class PSPublishEBOM extends BTest{
 		  
 		  String Id;
 		  //input the change brief
+		  logger.info("input change brief");
 		  Id=psPage.otherElements.getLabelId(LabelStyle.TEXTFIELD, "变更主题");
 		  psPage.text.openTextBox(TextStyle.IDININPUT, Id, 1);
 		  Thread.sleep(1000);
@@ -91,6 +99,7 @@ public class PSPublishEBOM extends BTest{
 		  Thread.sleep(1000);
 		  
 		  //input the change reason
+		  logger.info("select change reason");
 		  Id=psPage.otherElements.getLabelId(LabelStyle.TEXTAREAFIELD, "变更原因");
 		  psPage.text.openTextBox(TextStyle.TEXTAREAFIELD, Id, 1);
 		  Thread.sleep(1000);
@@ -98,6 +107,7 @@ public class PSPublishEBOM extends BTest{
 		  Thread.sleep(1000);
 		  
 		  //input the change method
+		  logger.info("select change method");
 		  Id=psPage.otherElements.getLabelId(LabelStyle.TEXTAREAFIELD, "变更措施");
 		  psPage.text.openTextBox(TextStyle.TEXTAREAFIELD, Id, 1);
 		  Thread.sleep(1000);
@@ -105,10 +115,12 @@ public class PSPublishEBOM extends BTest{
 		  Thread.sleep(1000);
 		  
 		  //save the PS
+		  logger.info("save the change order");
 		  psPage.button.clickButton("保存");
 		  Thread.sleep(3000);
 		  
 		  //add the change content
+		  logger.info("assign BOM line to the change order");
 		  psPage.tab.clickTab("仅BOM变更");
 		  Thread.sleep(1000);
 		  psPage.button.clickButton("关联");
@@ -141,12 +153,15 @@ public class PSPublishEBOM extends BTest{
 		  //start approval process
 		  super.startApprovalProcess(ChangeOrderType.BOM);
 		  
+		  logger.info("save the change order number: " + changeOrder);
 		  Map<String, String> testData=new HashMap<String, String>();
 		  testData.put("ChangeOrder",changeOrder);
 		  super.bcf.writeJasonFile(EnvJsonFile.TESTDATA, testData);
 		  
 		  
 	  }catch(Exception e) {
+		  super.TakeSnap();
+		  logger.error(e.getMessage());
 		  e.printStackTrace();
 		  Assert.assertEquals(false, true);
 	  }

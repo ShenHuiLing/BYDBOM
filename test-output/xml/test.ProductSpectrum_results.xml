@@ -4,10 +4,10 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="169.498">
+           time="156.055">
   <properties />
   
   
-            <testcase name="ProductSpectrumManagement" time="169.498" classname="test.ProductSpectrum" />
+            <testcase name="ProductSpectrumManagement" time="156.055" classname="test.ProductSpectrum" />
       
 </testsuite>
