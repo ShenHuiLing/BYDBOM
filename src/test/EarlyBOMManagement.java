@@ -24,7 +24,7 @@ public class EarlyBOMManagement extends BTest{
   public void AddPartInEarlyBOM() throws IOException {
 	  try {
 		  //start BOM
-		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
+		  super.StartBOM(EnvJsonFile.BASICFILE, "local");
 		  Thread.sleep(10000);
 		  
 		  //login BOM

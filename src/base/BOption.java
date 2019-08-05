@@ -173,7 +173,7 @@ public class BOption {
 	
 	/**
 	 * cover: product spectrum page, eBOM page
-	 * select the option from the dropdown list which is currently on focus
+	 * select the option from the drop down list which is currently on focus
 	 * @param option
 	 */
 	public void selectOption(String option) {

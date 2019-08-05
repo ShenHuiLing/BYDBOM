@@ -197,10 +197,18 @@ public class BCommonFunction {
     
     public void connectDB(EnvJsonFile ejf, String env) throws Exception{
     	this.readJasonFile(ejf);
+    	String url="";
+		String user="";
+		String password="";
     	if(env.equals("integration")) {
-    		String url=this.getProperty("integrationDB");
-    		String user=this.getProperty("integrationDBUser");
-			String password=this.getProperty("integrationDBPWD");
+    		url=this.getProperty("integrationDB");
+    		user=this.getProperty("integrationDBUser");
+			password=this.getProperty("integrationDBPWD");
+    	}else if(env.equals("local")) {
+    		url=this.getProperty("localDB");
+    		user=this.getProperty("localDBUser");
+			password=this.getProperty("localDBPWD");
+    	}
 			try {
 				this.conn=DriverManager.getConnection(url, user, password);
 				this.stmt=this.conn.createStatement();
@@ -210,7 +218,7 @@ public class BCommonFunction {
 				throw e;
 			}
 			
-    	}
+    	
     }
     
     public void closeDB() {

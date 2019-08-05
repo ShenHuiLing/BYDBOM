@@ -30,7 +30,7 @@ public class ProductSpectrum extends BTest {
   public void ProductSpectrumManagement() throws IOException {
 	  try {
 		  //start BOM
-		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
+		  super.StartBOM(EnvJsonFile.BASICFILE, "local");
 		  Thread.sleep(5000);
 		  
 		  //login BOM
@@ -168,7 +168,8 @@ public class ProductSpectrum extends BTest {
 		  logger.info("fill code for configuration car mode");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "nodeCode", 1);
 		  Thread.sleep(1000);
-		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getTimeStamp().substring(4));
+		  String basicCarCode=super.bcf.getTimeStamp().substring(4);
+		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,basicCarCode);
 		  
 		  logger.info("fill name for configuration car mode");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "nodeName", 1);
@@ -254,6 +255,7 @@ public class ProductSpectrum extends BTest {
 		  logger.info("save the vehicle mode for other test to use");
 		  Map<String, String> testData=new HashMap<String, String>();
 		  testData.put("ProjectCode",projectCode);
+		  testData.put("BasicCar", basicCarCode);
 		  super.bcf.writeJasonFile(EnvJsonFile.TESTDATA, testData);
 		  
 		  Assert.assertEquals(productSpectrumPage.otherElements.isEditFlagDisappeared(ListViewStyle.TREEVIEW), true);

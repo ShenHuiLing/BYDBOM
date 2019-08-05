@@ -34,7 +34,7 @@ public class EBOMManagement extends BTest {
 	  try {
 		  
 		  //start BOM
-		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
+		  super.StartBOM(EnvJsonFile.BASICFILE, "local");
 		  Thread.sleep(15000);
 		  
 		  //login BOM
@@ -59,9 +59,12 @@ public class EBOMManagement extends BTest {
 		  //select project code and query the bom
 		  logger.info("select vehicle mode code");
 		  String labelId=eBomPage.otherElements.getLabelId(LabelStyle.COMBO,"³µÐÍÐÍºÅ");
+		  System.out.println(labelId);
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
 		  String prjectCode=super.bcf.getProperty("ProjectCode");
 		  eBomPage.option.expandDropdownList(DropDownListStyle.COMBO,labelId);
+		  Thread.sleep(2000);
+		  eBomPage.text.inputText("partId", prjectCode);
 		  Thread.sleep(2000);
 		  eBomPage.option.selectOption(prjectCode);
 		  Thread.sleep(1000);
@@ -180,7 +183,7 @@ public class EBOMManagement extends BTest {
 
   @AfterTest
   public void afterTest() {
-	  super.close();
+	  //super.close();
 	  
   }
 

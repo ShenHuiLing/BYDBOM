@@ -7,5 +7,7 @@
 "integrationDB": "jdbc:oracle:thin:@192.168.1.61:1621:xe",
 "localDB": "jdbc:oracle:thin:@localhost:1521:localbyd",
 "integrationDBUser":"system",
-"integrationDBPWD":"admin123"
+"integrationDBPWD":"admin123",
+"localDBUser":"system",
+"localDBPWD":"admin123"
 }

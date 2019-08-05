@@ -24,7 +24,7 @@ public class MaterialApply extends BTest{
 	  try {
 		  
 		  //start BOM
-		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
+		  super.StartBOM(EnvJsonFile.BASICFILE, "local");
 		  Thread.sleep(10000);
 		  
 		  //login BOM
@@ -132,7 +132,7 @@ public class MaterialApply extends BTest{
 		  
 		  //update the material application record in DB and assign a material number to the part
 		  logger.info("as there is no PNAS interface in test environment, directly update the material code in DB");
-		  super.bcf.connectDB(EnvJsonFile.BASICFILE, "integration");
+		  super.bcf.connectDB(EnvJsonFile.BASICFILE, "local");
 		  String sql="update CUST.CUST_MATERIAL_INFO\n" + 
 		  		"set \n" + 
 		  		"CF_STATUS='APPLY_COMPLETE',\n" + 

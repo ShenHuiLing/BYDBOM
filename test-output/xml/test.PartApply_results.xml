@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="apply a new part"
+<testsuite name="apply a new part for EBOM"
            tests="1"
            failures="0"
            errors="0"
            skipped="0"
-           time="115.075">
+           time="139.995">
   <properties />
   
   
-            <testcase name="partApplyProcess" time="115.075" classname="test.PartApply" />
+            <testcase name="partApplyProcess" time="139.995" classname="test.PartApply" />
       
 </testsuite>

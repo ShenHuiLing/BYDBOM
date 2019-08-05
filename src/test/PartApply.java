@@ -39,7 +39,7 @@ public class PartApply extends BTest{
   public void partApplyProcess() throws IOException {
 	  try {
 		//start BOM
-		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
+		  super.StartBOM(EnvJsonFile.BASICFILE, "local");
 		  Thread.sleep(30000);
 		  
 		  //login BOM
@@ -206,7 +206,7 @@ public class PartApply extends BTest{
 
   @AfterTest
   public void afterTest() {
-	  //super.close();
+	  super.close();
   }
 
 }

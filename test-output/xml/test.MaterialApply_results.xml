@@ -4,10 +4,10 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="122.932">
+           time="74.561">
   <properties />
   
   
-            <testcase name="ApplyMaterialNum" time="122.932" classname="test.MaterialApply" />
+            <testcase name="ApplyMaterialNum" time="74.561" classname="test.MaterialApply" />
       
 </testsuite>

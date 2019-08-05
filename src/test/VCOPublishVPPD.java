@@ -28,7 +28,7 @@ public class VCOPublishVPPD extends BTest {
 	  try
 	  {
 		  //start BOM
-		  super.StartBOM(EnvJsonFile.BASICFILE, "integration");
+		  super.StartBOM(EnvJsonFile.BASICFILE, "local");
 		  Thread.sleep(15000);
 		
 		  //login BOM
