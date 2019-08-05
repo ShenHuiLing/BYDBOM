@@ -30,7 +30,7 @@ public class ProductSpectrum extends BTest {
   public void ProductSpectrumManagement() throws IOException {
 	  try {
 		  //start BOM
-		  //test1
+		  
 		  super.StartBOM(EnvJsonFile.BASICFILE, "local");
 		  Thread.sleep(5000);
 		  
