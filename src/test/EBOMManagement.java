@@ -183,7 +183,7 @@ public class EBOMManagement extends BTest {
 
   @AfterTest
   public void afterTest() {
-	  //super.close();
+	  super.close();
 	  
   }
 
