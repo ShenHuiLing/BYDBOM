@@ -185,7 +185,7 @@ public class PSPublishEBOM extends BTest{
 
   @AfterTest
   public void afterTest() {
-	  //super.close();
+	  super.close();
   }
 
 }
