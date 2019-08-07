@@ -56,7 +56,7 @@ public class PSChangePart extends BTest{
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
 		  projectCode=super.bcf.getProperty("ProjectCode");
 		  partNum=super.bcf.getProperty("PartNum");
-		  basicCarCode=super.bcf.getProperty("basicCarCode");
+		  basicCarCode=super.bcf.getProperty("BasicCar");
 		  logger.info("vehicle mode code: " + projectCode);
 		  logger.info("part number: " + projectCode);
 		  logger.info("basic car code: " + basicCarCode);
