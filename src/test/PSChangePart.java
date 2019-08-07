@@ -52,18 +52,31 @@ public class PSChangePart extends BTest{
 		  String labelId;
 		  String projectCode;
 		  String partNum;
+		  String basicCarCode;
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
 		  projectCode=super.bcf.getProperty("ProjectCode");
 		  partNum=super.bcf.getProperty("PartNum");
+		  basicCarCode=super.bcf.getProperty("basicCarCode");
 		  logger.info("vehicle mode code: " + projectCode);
 		  logger.info("part number: " + projectCode);
+		  logger.info("basic car code: " + basicCarCode);
 		  
-		  //select the vehicle mode code
-		  logger.info("select the vehicle mode code");
-		  labelId=psPage.otherElements.getLabelId(LabelStyle.GANTCOMBOBOX,"车型型号",1);
-		  psPage.option.expandDropdownList(DropDownListStyle.GANTCOMBOBOX,labelId);
+		//select the basic car code
+		  logger.info("select basic car code");
+		  labelId=psPage.otherElements.getLabelId(LabelStyle.GANTGRIDCOMBOBOX,"基础车型",0);
+		  psPage.button.clickMagnifyingGlass(TableStyle.GANTGRIDCOMBOBOX, labelId, 1, 2);
+		  Thread.sleep(1000);
+		  psPage.text.inputText("nodeCode", basicCarCode);
+		  Thread.sleep(1000);
+		  
+		  psPage.button.clickButton("查询", 1);
+		  Thread.sleep(1000);
+		  
+		  String tableId;
+		  tableId=psPage.otherElements.getTableId(TableStyle.GRIDVIEW, 1);
+		  psPage.otherElements.clickRowByText(TableStyle.GRIDVIEW, tableId, "5", basicCarCode);
 		  Thread.sleep(2000);
-		  psPage.option.selectOption(projectCode);
+		  psPage.button.clickButton("选择");
 		  Thread.sleep(1000);
 		  
 		  //select the change type
