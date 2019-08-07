@@ -148,7 +148,7 @@ public class PSChangePart extends BTest{
 		  Thread.sleep(3000);
 		  
 		  super.selectPartFromPartSelector(partNum, 3, false);
-		 
+		  Thread.sleep(5000);
 		  //click maintain link
 		  logger.info("click maintain link");
 		  psPage.link.clickLinkByText("Î¬»¤");
