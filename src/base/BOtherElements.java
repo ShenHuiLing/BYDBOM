@@ -219,6 +219,8 @@ public class BOtherElements {
 			searchString="gantcombobox-";
 		else if(ls==LabelStyle.CHECKBOXFIELD)
 			searchString="checkboxfield-";
+		else if(ls==LabelStyle.GANTGRIDCOMBOBOX)
+			searchString="gantgridcombobox-";
 		
 		xPath="//label[contains(@id, '" + searchString + "')]";
 		
@@ -318,6 +320,15 @@ public class BOtherElements {
 			temp=String.valueOf(elementList.get(index).getAttribute("id"));
 			int start=temp.indexOf(searchString)+searchString.length();
 			int end=temp.indexOf("-table");
+			Id=temp.substring(start, end);
+		}
+		else if(ts==TableStyle.COLUMNFILTER) {
+			searchString="columnfilter-";
+			xPath="//table[contains(@id, '" + searchString + "') and contains(@id, 'triggerWrap')]";
+			elementList=this.driver.findElements(By.xpath(xPath));
+			temp=String.valueOf(elementList.get(index).getAttribute("id"));
+			int start=temp.indexOf(searchString)+searchString.length();
+			int end=temp.indexOf("-triggerWrap");
 			Id=temp.substring(start, end);
 		}
 		return Id;

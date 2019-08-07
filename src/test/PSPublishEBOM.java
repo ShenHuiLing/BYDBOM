@@ -7,6 +7,7 @@ import common.ChangeOrderType;
 import common.DropDownListStyle;
 import common.EnvJsonFile;
 import common.LabelStyle;
+import common.ListViewStyle;
 import common.TableStyle;
 import common.TextStyle;
 import page.MainPage;
@@ -53,16 +54,28 @@ public class PSPublishEBOM extends BTest{
 		  String labelId;
 		  String prjectCode;
 		  String partNum;
+		  String basicCarCode;
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
 		  prjectCode=super.bcf.getProperty("ProjectCode");
 		  partNum=super.bcf.getProperty("PartNum");
+		  basicCarCode=super.bcf.getProperty("BasicCar");
 		  
-		  //select the vehicle mode code
-		  logger.info("select vehicle mode code");
-		  labelId=psPage.otherElements.getLabelId(LabelStyle.GANTCOMBOBOX,"车型型号",1);
-		  psPage.option.expandDropdownList(DropDownListStyle.GANTCOMBOBOX,labelId);
+		  //select the basic car code
+		  logger.info("select basic car code");
+		  labelId=psPage.otherElements.getLabelId(LabelStyle.GANTGRIDCOMBOBOX,"基础车型",0);
+		  psPage.button.clickMagnifyingGlass(TableStyle.GANTGRIDCOMBOBOX, labelId, 1, 2);
+		  Thread.sleep(1000);
+		  psPage.text.inputText("nodeCode", basicCarCode);
+		  Thread.sleep(1000);
+		  
+		  psPage.button.clickButton("查询", 1);
+		  Thread.sleep(1000);
+		  
+		  String tableId;
+		  tableId=psPage.otherElements.getTableId(TableStyle.GRIDVIEW, 1);
+		  psPage.otherElements.clickRowByText(TableStyle.GRIDVIEW, tableId, "5", basicCarCode);
 		  Thread.sleep(2000);
-		  psPage.option.selectOption(prjectCode);
+		  psPage.button.clickButton("选择");
 		  Thread.sleep(1000);
 		  
 		  //select the change type
@@ -131,13 +144,13 @@ public class PSPublishEBOM extends BTest{
 		  Thread.sleep(3000);
 		  //input the part number and filter out the part
 		  String bomLocatorTableId;
-		  bomLocatorTableId=psPage.otherElements.getTableId(TableStyle.BOMMGMT_LOCATOR, 0);
+		  bomLocatorTableId=psPage.otherElements.getTableId(TableStyle.COLUMNFILTER, 1);
 		  //psPage.text.openTextBox(bomLocatorTableId, 1, 1);
 		  //Thread.sleep(1000);
 		  psPage.text.inputText(bomLocatorTableId, partNum);
 		  Thread.sleep(1000);
 		  //use the open text box in table method to click the magnification glass as they are the same kind of element "div"
-		  psPage.text.openTextBox(bomLocatorTableId, 1, 4);
+		  psPage.text.openTextBox(bomLocatorTableId, 1, 2);
 		  Thread.sleep(1000);
 		  
 		  String mainDataTableId;
@@ -172,7 +185,7 @@ public class PSPublishEBOM extends BTest{
 
   @AfterTest
   public void afterTest() {
-	  super.close();
+	  //super.close();
   }
 
 }

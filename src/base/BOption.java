@@ -67,6 +67,7 @@ public class BOption {
 			{
 				elementList.get(node).click();
 			}
+			
 		}
 	}
 	
@@ -114,7 +115,7 @@ public class BOption {
 	 * @param row
 	 * @param col
 	 */
-	public void checkCheckBoxByTable(String tableId, int row, int col) {
+	public void checkCheckBoxByTable1(String tableId, int row, int col) {
 		String xPath="//table[contains(@id, '" + tableId + "')]/tbody/tr[" + row + "]/td[" + col + "]/div/img";
 		WebElement element=this.driver.findElement(By.xpath(xPath));
 		if(!element.getAttribute("class").contains("checked"))

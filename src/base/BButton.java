@@ -111,6 +111,9 @@ public class BButton {
 		else if(ts==TableStyle.USERTRIGGERFIELD){
 			xPath="//table[contains(@id, 'userTriggerField') and contains(@id, '" + tableId + "') and contains(@id, 'triggerWrap')]/tbody/tr[" + row + "]/td[" + col + "]/div"; 
 		}
+		else if(ts==TableStyle.GANTGRIDCOMBOBOX) {
+			xPath="//table[contains(@id, 'gantgridcombobox') and contains(@id, '" + tableId + "') and contains(@id, 'triggerWrap')]/tbody/tr[" + row + "]/td[" + col + "]/div"; 
+		}
 		WebElement element=this.driver.findElement(By.xpath(xPath));
 		element.click();
 	}
