@@ -89,18 +89,18 @@ public class MaterialApply extends BTest{
 		  //select material group
 		  logger.info("select material group");
 		  materialPage.text.openTextBox(materialApplicationTableId, 1, 1);
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  materialPage.option.expandDropdownList();
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  materialPage.option.selectOption("(汽)标准件");
 		  Thread.sleep(2000);
 		  
 		  //select manufacture code
 		  logger.info("select manufacture code");
 		  materialPage.text.openTextBox(materialApplicationTableId, 1, 2);
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  materialPage.option.expandDropdownList();
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  materialPage.option.selectOption("内部供应商");
 		  Thread.sleep(2000);
 		  
