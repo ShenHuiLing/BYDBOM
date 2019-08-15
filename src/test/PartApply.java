@@ -40,11 +40,14 @@ public class PartApply extends BTest{
 	  try {
 		//start BOM
 		  super.StartBOM(EnvJsonFile.BASICFILE, "local");
-		  Thread.sleep(30000);
+		  Thread.sleep(10000);
 		  
 		  //login BOM
 		  super.LoginBOM();
-		  Thread.sleep(30000);
+		  Thread.sleep(10000);
+		  
+		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
+		  String basicCarCode=super.bcf.getProperty("BasicCar");
 		  
 		  //open product spectrum window
 		  logger.info("open part application management window");
@@ -52,7 +55,7 @@ public class PartApply extends BTest{
 		  mainPage.mainMenu.hoverMenu("零部件管理");
 		  Thread.sleep(2000);
 		  mainPage.mainMenu.clickMenu("零件申请单管理");
-		  Thread.sleep(20000);
+		  Thread.sleep(10000);
 		  
 		  //create a new part application order
 		  logger.info("create a new part application form");
@@ -115,19 +118,18 @@ public class PartApply extends BTest{
 		  partApplyOrderPage.button.clickButton("选择");
 		  Thread.sleep(1000);
 		  
-		  
-		  //add the additional information code
-		  logger.info("Fill the additional code as part of the part code");
-		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 14);
+		  //add the change code
+		  logger.info("Fill the change code as part of the part code");
+		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 13);
 		  Thread.sleep(1000);
-		  partApplyOrderPage.text.inputText(TextStyle.TEXTFIELD, super.bcf.getTimeStamp().substring(4));
+		  System.out.println(super.bcf.getTimeStamp());
+		  partApplyOrderPage.text.inputText(TextStyle.TEXTFIELD, super.bcf.getTimeStamp().substring(7));
 		  Thread.sleep(1000);
 		  
 		  //select the functional position code
-		  
-		  if(partApplyOrderPage.text.isTextBoxEmpty(partApplicationTableId, 1, 19)){
+		  if(partApplyOrderPage.text.isTextBoxEmpty(partApplicationTableId, 1, 18)){
 			  logger.info("select the functional position code");
-			  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 19);
+			  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 18);
 			  Thread.sleep(1000);
 			  magnifyingGlassTableId=partApplyOrderPage.otherElements.getTableId(TableStyle.GANGTRIGGERFIELD, 1);
 			  Thread.sleep(1000);
@@ -142,13 +144,13 @@ public class PartApply extends BTest{
 		  
 		  //select suggested source
 		  logger.info("Select the suggested source");
-		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 23);
+		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 22);
 		  Thread.sleep(1000);
 		  partApplyOrderPage.option.expandDropdownList();
 		  Thread.sleep(1000);
 		  partApplyOrderPage.option.selectOption("采购");
 		  Thread.sleep(1000);
-		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 24);
+		  partApplyOrderPage.text.openTextBox(partApplicationTableId, 1, 23);
 		  Thread.sleep(1000);
 		  
 		  //save
@@ -206,7 +208,7 @@ public class PartApply extends BTest{
 
   @AfterTest
   public void afterTest() {
-	  super.close();
+	  //super.close();
   }
 
 }
