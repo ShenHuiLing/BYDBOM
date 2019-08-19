@@ -40,10 +40,8 @@ public class BButton {
 		int i;
 		for(i=0;i<elementList.size();i++)
 				  {
-					
 				  	if(elementList.get(i).getText().contains(button))
 				  	{
-				  		System.out.println(elementList.get(i).getText());
 				  		elementList.get(i).click();
 				  		break;
 				  	}
