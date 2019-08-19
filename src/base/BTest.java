@@ -233,10 +233,10 @@ public class BTest {
 				if(taskName.equalsIgnoreCase("成本测算")) {
 					logger.info("as current approval node is cost estimation, it needs to fill the estimated cost information");
 					approvalPage.tab.clickTab("零部件变更");
-					Thread.sleep(3000);
+					Thread.sleep(5000);
 					logger.info("click view link");
 					approvalPage.link.clickLinkByText("查看");
-					Thread.sleep(1000);
+					Thread.sleep(3000);
 					
 					String labelId;
 					logger.info("fill the estimated unit price");
@@ -262,15 +262,15 @@ public class BTest {
 					
 					logger.info("save the estimated cost information");
 					approvalPage.button.clickButton("保存");
-					Thread.sleep(10000);
+					Thread.sleep(15000);
 				}
 				else if(taskName.equalsIgnoreCase("采购成本维护")) {
 					logger.info("as current approval node is cost for purchase, it needs to fill the negotiation price information");
 					approvalPage.tab.clickTab("零部件变更");
-					Thread.sleep(3000);
+					Thread.sleep(5000);
 					logger.info("click view link");
 					approvalPage.link.clickLinkByText("查看");
-					Thread.sleep(1000);
+					Thread.sleep(3000);
 					
 					String labelId;
 					logger.info("fill the supplier name");
