@@ -350,7 +350,7 @@ public class BTest {
 				approvalPage.button.clickButton("Ö´ÐÐ²Ù×÷");
 				Thread.sleep(1000);
 				approvalPage.button.clickButton("ÊÇ");
-				Thread.sleep(3000);
+				Thread.sleep(5000);
 				
 		}catch (Exception e){
 			throw e;
