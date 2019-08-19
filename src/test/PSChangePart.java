@@ -143,7 +143,7 @@ public class PSChangePart extends BTest{
 		  //add the change content
 		  logger.info("open part change tab");
 		  psPage.tab.clickTab("零部件变更");
-		  Thread.sleep(1000);
+		  Thread.sleep(10000);
 		  psPage.button.clickButton("关联");
 		  Thread.sleep(3000);
 		  
