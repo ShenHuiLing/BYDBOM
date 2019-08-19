@@ -64,7 +64,7 @@ public class EarlyBOMManagement extends BTest{
 		  eBomPage.button.clickButton("新增");
 		  Thread.sleep(1000);
 		  eBomPage.button.clickChildButton("新增子节点");
-		  Thread.sleep(1000);
+		  Thread.sleep(5000);
 		  
 		  //from the part selector, choose a part
 		  logger.info("from the test data, select the part in the part selector window");
@@ -75,7 +75,7 @@ public class EarlyBOMManagement extends BTest{
 		  eBomPage.text.inputText(TextStyle.TEXTFIELD,super.bcf.getProperty("PartNum"));
 		  Thread.sleep(1000);
 		  eBomPage.button.clickButton("查询",1);
-		  Thread.sleep(1000);
+		  Thread.sleep(5000);
 		  String PopUpTableId=eBomPage.otherElements.getTableId(TableStyle.GRIDVIEW,2);
 		  eBomPage.option.clickCheckBox(PopUpTableId, 1,1);
 		  Thread.sleep(1000);
