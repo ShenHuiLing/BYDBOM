@@ -334,7 +334,7 @@ public class BTest {
 				
 				//click the approval tab
 				approvalPage.tab.clickTab("Á÷³ÌÉóÅú");
-				Thread.sleep(2000);
+				Thread.sleep(10000);
 				
 				//check the approval check box
 				approvalPage.option.selectApprovalOption();
