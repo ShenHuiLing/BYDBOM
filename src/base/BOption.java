@@ -47,13 +47,6 @@ public class BOption {
 		int i;
 		for(i=0;i<elementList.size();i++)
 			{	
-			System.out.println(elementList.get(i).getText());
-	    	System.out.println(elementList.get(i).getAttribute("value"));
-	    	System.out.println(elementList.get(i).getAttribute("name"));
-	    	System.out.println(elementList.get(i).getAttribute("checked"));
-	    	System.out.println(elementList.get(i).getAttribute("text"));
-	    	System.out.println(elementList.get(i).getAttribute("caption"));
-	    	System.out.println(elementList.get(i).isSelected());
 			    if(elementList.get(i).getText().contains(option)){
 			    	elementList.get(i).click();
 				    break;

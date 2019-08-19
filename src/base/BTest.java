@@ -315,7 +315,7 @@ public class BTest {
 					
 					logger.info("save the negotiation price information");
 					approvalPage.button.clickButton("保存");
-					Thread.sleep(10000);
+					Thread.sleep(15000);
 					
 				}else if(taskName.equalsIgnoreCase("品质会签")) {
 					logger.info("as quality approver, it needs to asses the serious index");
