@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -405,6 +407,34 @@ public class BOtherElements {
 		String xPath="//span[contains(@id, 'gantdetailwindow') and contains(@id, 'header') and contains(@id, 'textEl') and contains(@class, 'window-header')]";
 		WebElement element=this.driver.findElement(By.xpath(xPath));
 		return element.getText();
+	}
+	
+	public void resizePopupWindow(String id) {
+		String xPath="//div[contains(@class, 'x-layer') and contains(@class, 'active-win') and contains(@id, '" + id + "')]";
+	    xPath="//*[@id='button-1519-btnInnerEl']";
+	    xPath="//span[contains(@id, 'button') and contains(@id, 'btnInnerEl')]";
+	    elementList=this.driver.findElements(By.xpath(xPath));	
+	    WebElement element=null;
+	    for(int i=0;i<elementList.size();i++) {
+	    	if(elementList.get(i).getText().contains("È·¶¨")) {
+	    		element=elementList.get(i);
+	    		break;
+	    	}
+	    }
+		//xPath="//*[@id=\"translation-1021-btnIconEl\"]";
+	    //driver.findElement(By.cssSelector("#translation-1021-btnIconEl")).click();
+	    //WebElement element=driver.findElement(By.xpath(xPath));
+	    
+	    //((JavascriptExecutor)driver).executeAsyncScript("arguments[0].setAttribute('style', arguments[1]);", element, "border: 2px solid blue;");
+	    //((JavascriptExecutor)driver).executeScript("arguments[0].setAttribute('class', arguments[1]);", element, "x-window x-layer x-window-default x-closable x-window-closable x-window-default-closable x-border-box ux-desktop-active-win");
+	    //((JavascriptExecutor)driver).executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "width: 1240px; height: 600px; right: auto; left: 0px; top: 0px; z-index: 29001;");
+	    
+	    //action.moveToElement(element, 20, 1).click();
+	    //action.sendKeys(element, Keys.ENTER).perform();
+	    //action.moveToElement(element,290,12).perform();
+	    //action.click().perform();
+	    element.sendKeys(Keys.ENTER);
+	    //element.click();
 	}
 	
 }

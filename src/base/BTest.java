@@ -17,6 +17,7 @@ import com.google.common.io.Files;
 
 import common.BCommonFunction;
 import common.ChangeOrderType;
+import common.CheckBoxStyle;
 import common.ColumnStyle;
 import common.DropDownListStyle;
 import common.EnvJsonFile;
@@ -159,7 +160,7 @@ public class BTest {
 						  approvalPage.button.clickQueryApproverButton();
 						  Thread.sleep(1000);
 						 
-						  approvalPage.option.clickCheckBoxOption(approver);
+						  approvalPage.option.clickCheckBoxOption(CheckBoxStyle.ROWCHECKER,approver);
 						  Thread.sleep(1000);
 						  
 						  approvalPage.button.clickButton(">>");

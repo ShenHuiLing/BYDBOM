@@ -208,7 +208,7 @@ public class PartApply extends BTest{
 
   @AfterTest
   public void afterTest() {
-	  //super.close();
+	  super.close();
   }
 
 }

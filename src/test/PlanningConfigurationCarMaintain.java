@@ -3,6 +3,7 @@ package test;
 import org.testng.annotations.Test;
 
 import base.BTest;
+import common.CheckBoxStyle;
 import common.EnvJsonFile;
 import common.TableStyle;
 import page.MainPage;
@@ -11,7 +12,10 @@ import page.PlanningConfigurationPage;
 import org.testng.annotations.BeforeTest;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
 /**
@@ -55,12 +59,13 @@ public class PlanningConfigurationCarMaintain extends BTest{
 		  String projectCode;
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
 		  projectCode=super.bcf.getProperty("ProjectCode");
-		  projectCode="AT-CODE-1562561870";
 		  
 		  String tableId;
 		  tableId=planConfigPage.otherElements.getTableId(TableStyle.GRIDVIEW, 0);
 		  System.out.println(tableId);
 		  
+		  //select vehicle code
+		  logger.info("select the vehicle code");
 		  planConfigPage.text.openTextBox(tableId, 1, 4);
 		  Thread.sleep(1000);
 		  planConfigPage.option.expandDropdownList();
@@ -68,16 +73,50 @@ public class PlanningConfigurationCarMaintain extends BTest{
 		  planConfigPage.option.selectOption(projectCode);
 		  Thread.sleep(1000);
 		  
+		  //fill planning configuration car name
+		  logger.info("fill planning configuration car name");
 		  planConfigPage.text.openTextBox(tableId, 1, 5);
 		  Thread.sleep(1000);
-		  planConfigPage.text.inputText("planVehicleName", 1, "PVN_"+bcf.getTimeStamp());
+		  String planningConfigurationCarName="PVN_"+bcf.getTimeStamp();
+		  planConfigPage.text.inputText("planVehicleName", 1, planningConfigurationCarName);
 		  Thread.sleep(1000);
 		  
-		  String Id;
-		  //Id=planConfigPage.otherElements.getTableId(TableStyle.GANTCODETYPECOMBOBOX, 0);
+		  //select basic car code
+		  logger.info("select basic car code");
+		  planConfigPage.text.openTextBox(tableId, 1, 6);
+		  Thread.sleep(2000);
+		  planConfigPage.option.expandDropdownList();
+		  Thread.sleep(2000);
+		  planConfigPage.option.expandDropdownList();
+		  Thread.sleep(1000);
+		  planConfigPage.option.SelectAllCheckboxOption();
+		  Thread.sleep(1000);
+		  
+		  //select configuration car
+		  logger.info("select configuration car");
+		  planConfigPage.text.openTextBox(tableId, 1, 7);
+		  Thread.sleep(2000);
+		  planConfigPage.option.expandDropdownList();
+		  Thread.sleep(2000);
+		  planConfigPage.option.expandDropdownList();
+		  Thread.sleep(1000);
+		  planConfigPage.option.SelectAllCheckboxOption();
+		  Thread.sleep(1000);
+		  
+		  logger.info("save the planning configuration car");
+		  planConfigPage.button.clickButton("±£´æ");
+		  Thread.sleep(2000);
+		  
+		  logger.info("save the planning configuration car name in test data for further usage");
+		  Map<String, String> testData=new HashMap<String, String>();
+		  testData.put("PlanningConfigurationCarName", planningConfigurationCarName);
+		  super.bcf.writeJasonFile(EnvJsonFile.TESTDATA, testData);
 		  
 	  }catch(Exception e) {
+		  super.TakeSnap();
+		  logger.error(e.getMessage());
 		  e.printStackTrace();
+		  Assert.assertEquals(false, true);
 	  }
 	  
   }
@@ -87,6 +126,7 @@ public class PlanningConfigurationCarMaintain extends BTest{
 
   @AfterTest
   public void afterTest() {
+	  super.close();
   }
 
 }

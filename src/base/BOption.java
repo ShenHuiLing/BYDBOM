@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
+import common.CheckBoxStyle;
 import common.DropDownListStyle;
 import common.ListViewStyle;
 
@@ -34,13 +35,25 @@ public class BOption {
 	 * click the checkbox option on change order page
 	 * @param option: which option will be checked
 	 */
-	public void clickCheckBoxOption(String option) {
-		String xPath="//td[contains(@class, 'headerId-gridcolumn') and contains(@class, 'checker')]/following-sibling::td[1]/div[not(contains(@class, 'number'))]";
+	public void clickCheckBoxOption(CheckBoxStyle cbs,String option) {
+		String xPath="";
+		if(cbs==CheckBoxStyle.ROWCHECKER) {
+			xPath="//td[contains(@class, 'headerId-gridcolumn') and contains(@class, 'checker')]/following-sibling::td[1]/div[not(contains(@class, 'number'))]";
+		}else if(cbs==CheckBoxStyle.INPUTCHECKBOX) {
+			xPath="//input[contains(@type, 'checkbox')]";
+		}
 		elementList=this.driver.findElements(By.xpath(xPath));
 		
 		int i;
 		for(i=0;i<elementList.size();i++)
 			{	
+			System.out.println(elementList.get(i).getText());
+	    	System.out.println(elementList.get(i).getAttribute("value"));
+	    	System.out.println(elementList.get(i).getAttribute("name"));
+	    	System.out.println(elementList.get(i).getAttribute("checked"));
+	    	System.out.println(elementList.get(i).getAttribute("text"));
+	    	System.out.println(elementList.get(i).getAttribute("caption"));
+	    	System.out.println(elementList.get(i).isSelected());
 			    if(elementList.get(i).getText().contains(option)){
 			    	elementList.get(i).click();
 				    break;
@@ -115,7 +128,7 @@ public class BOption {
 	 * @param row
 	 * @param col
 	 */
-	public void checkCheckBoxByTable1(String tableId, int row, int col) {
+	public void checkCheckBoxByTable(String tableId, int row, int col) {
 		String xPath="//table[contains(@id, '" + tableId + "')]/tbody/tr[" + row + "]/td[" + col + "]/div/img";
 		WebElement element=this.driver.findElement(By.xpath(xPath));
 		if(!element.getAttribute("class").contains("checked"))
@@ -203,7 +216,8 @@ public class BOption {
 		int i;
 		for(i=0;i<elementList.size();i++)
 				  {
-	        		elementList.get(i).click();
+					if(!elementList.get(i).isSelected())
+						elementList.get(i).click();
 				  }
 	}
 	

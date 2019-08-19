@@ -158,35 +158,36 @@ public class ProductSpectrum extends BTest {
 		  super.bcf.writeJasonFile(EnvJsonFile.TESTDATA, testData);
 		  */
 		  
-		  //add power configuration
-		  logger.info("add configuration car mode");
+		  //add basic car
+		  logger.info("add basic car");
 		  productSpectrumPage.button.clickButton("新增");
 		  Thread.sleep(1000);
 		  productSpectrumPage.button.clickChildButton("新增子节点");
 		  Thread.sleep(1000);
 		  
-		  logger.info("fill code for configuration car mode");
+		  logger.info("fill code for basic car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "nodeCode", 1);
 		  Thread.sleep(1000);
 		  String basicCarCode=super.bcf.getTimeStamp().substring(4);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,basicCarCode);
 		  
-		  logger.info("fill name for configuration car mode");
+		  logger.info("fill name for basic car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "nodeName", 1);
 		  Thread.sleep(1000);
+		  
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-name-"+super.bcf.getTimeStamp());
 		  
-		  logger.info("fill description for configuration car mode");
+		  logger.info("fill description for basic car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "description", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-description-"+super.bcf.getTimeStamp());
 		  
-		  logger.info("fill market for configuration car mode");
+		  logger.info("fill market for basic car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "saleMarket", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-saleMarket-"+super.bcf.getTimeStamp());
 		  
-		  logger.info("fill power configuration for configuration car mode");
+		  logger.info("fill power configuration for basic car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "dynamicConfig", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-dynamicConfig-"+super.bcf.getTimeStamp());
@@ -200,42 +201,42 @@ public class ProductSpectrum extends BTest {
 		  */
 		  Thread.sleep(1000);
 
-		  
-		  //add basic configuration
-		  logger.info("add basic car mode");
+		  //add configuration car
+		  logger.info("add configuration car");
 		  productSpectrumPage.button.clickButton("新增");
 		  Thread.sleep(1000);
 		  productSpectrumPage.button.clickChildButton("新增子节点");
 		  Thread.sleep(1000);
 		  
-		  logger.info("fill code for basic car mode");
+		  logger.info("fill code for configuration car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "nodeCode", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-code-"+super.bcf.getTimeStamp());
 		  
-		  logger.info("fill name for basic car mode");
+		  logger.info("fill name for configuraton car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "nodeName", 1);
 		  Thread.sleep(1000);
-		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-name-"+super.bcf.getTimeStamp());
+		  String configurationCarName="AT-name-"+super.bcf.getTimeStamp();
+		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,configurationCarName);
 		  
-		  logger.info("fill description basic car mode");
+		  logger.info("fill description configuration car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "description", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-description-"+super.bcf.getTimeStamp());
 		  
-		  logger.info("fill status for basic car mode");
+		  logger.info("fill status for configuration car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "status", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.option.expandDropdownList();
 		  Thread.sleep(1000);
 		  productSpectrumPage.option.selectOption("规划");
 		  
-		  logger.info("fill configuration level for basic car mode");
+		  logger.info("fill configuration level for configuration car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "configLevel", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-configLevel-"+super.bcf.getTimeStamp());
 		  
-		  logger.info("fill announcement code for basic car mode");
+		  logger.info("fill announcement code for configuration car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "announcementCode", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-announcementCode-"+super.bcf.getTimeStamp());
@@ -256,6 +257,7 @@ public class ProductSpectrum extends BTest {
 		  Map<String, String> testData=new HashMap<String, String>();
 		  testData.put("ProjectCode",projectCode);
 		  testData.put("BasicCar", basicCarCode);
+		  testData.put("ConfigurationCar", configurationCarName);
 		  super.bcf.writeJasonFile(EnvJsonFile.TESTDATA, testData);
 		  
 		  Assert.assertEquals(productSpectrumPage.otherElements.isEditFlagDisappeared(ListViewStyle.TREEVIEW), true);
