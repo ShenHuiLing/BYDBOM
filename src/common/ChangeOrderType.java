@@ -1,5 +1,5 @@
 package common;
 
 public enum ChangeOrderType {
-	PART,VPPD,BOM;
+	PART,VPPD,BOM,PLANNINGCONFIGURATION;
 }

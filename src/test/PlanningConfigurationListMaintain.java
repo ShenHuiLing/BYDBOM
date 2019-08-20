@@ -6,7 +6,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.openqa.selenium.Dimension;
 
 import base.BTest;
 import common.DropDownListStyle;
@@ -41,6 +40,7 @@ public class PlanningConfigurationListMaintain extends BTest {
 		  PlanningConfigurationPage planConfigPage=new PlanningConfigurationPage(super.driver);
 		  
 		  //select planning configuration car
+		  logger.info("select planning configuration car");
 		  String planningConfigurationCarName;
 		  super.bcf.readJasonFile(EnvJsonFile.TESTDATA);
 		  planningConfigurationCarName=super.bcf.getProperty("PlanningConfigurationCarName");
@@ -51,9 +51,10 @@ public class PlanningConfigurationListMaintain extends BTest {
 		  Thread.sleep(2000);
 		  
 		  //associate configuration to the list
+		  logger.info("associate configuration to the list");
 		  planConfigPage.button.clickButton("关联规划配置描述");
 		  Thread.sleep(2000);
-		  /*
+		  
 		  //input the planning configuration for search
 		  String planningConfiguration=super.bcf.getProperty("PlanningConfig");
 		  planConfigPage.text.inputText("level3", 1, planningConfiguration);
@@ -67,12 +68,10 @@ public class PlanningConfigurationListMaintain extends BTest {
 		  Thread.sleep(1000);
 		  planConfigPage.button.clickButton(">>");
 		  Thread.sleep(1000);
-		  */
-		  planConfigPage.otherElements.resizePopupWindow("gantang.cfgmgmt.planconfig.planconfigdesc.PlanConfigDescSelectorView");
-		  //planConfigPage.button.clickButton("确定");
 		  
-		  //super.driver.manage().window().setSize(new Dimension(480, 800));
-		  
+		  //planConfigPage.otherElements.resizePopupWindow("gantang.cfgmgmt.planconfig.planconfigdesc.PlanConfigDescSelectorView");
+		  planConfigPage.button.clickButton("确定");
+		  Thread.sleep(2000);
 		  
 	  }catch(Exception e) {
 		  super.TakeSnap();
@@ -88,7 +87,7 @@ public class PlanningConfigurationListMaintain extends BTest {
 
   @AfterTest
   public void afterTest() {
-	  //super.close();
+	  super.close();
   }
 
 }

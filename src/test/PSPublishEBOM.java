@@ -48,7 +48,7 @@ public class PSPublishEBOM extends BTest{
 		  logger.info("create a new PS");
 		  psPage.button.clickButton("ÐÂÔö");
 		  Thread.sleep(1000);
-		  String changeOrder=psPage.text.getValueFromTextBox();
+		  String changeOrder=psPage.text.getChangeOrderNumber();
 		  System.out.println(changeOrder);
 		  
 		  String labelId;

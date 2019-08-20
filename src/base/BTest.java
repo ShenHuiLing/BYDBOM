@@ -203,6 +203,8 @@ public class BTest {
 					index=2;
 				else if(cot==ChangeOrderType.PART)
 					index=3;
+				else if(cot==ChangeOrderType.PLANNINGCONFIGURATION)
+					index=2;
 				
 				String tableId=approvalPage.otherElements.getTableId(TableStyle.GRIDVIEW, index);
 				

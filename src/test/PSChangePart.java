@@ -46,7 +46,7 @@ public class PSChangePart extends BTest{
 		  logger.info("create a new PS");
 		  psPage.button.clickButton("ÐÂÔö");
 		  Thread.sleep(1000);
-		  String changeOrder=psPage.text.getValueFromTextBox();
+		  String changeOrder=psPage.text.getChangeOrderNumber();
 		  logger.info("new PS number: " + changeOrder);
 		  
 		  String labelId;

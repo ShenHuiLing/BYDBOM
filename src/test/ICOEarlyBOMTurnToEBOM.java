@@ -45,7 +45,7 @@ public class ICOEarlyBOMTurnToEBOM extends BTest{
 		  logger.info("create a new order");
 		  bomPublishPage.button.clickButton("ÐÂÔö");
 		  Thread.sleep(1000);
-		  String changeOrder=bomPublishPage.text.getValueFromTextBox();
+		  String changeOrder=bomPublishPage.text.getChangeOrderNumber();
 		  System.out.println(changeOrder);
 		  
 		  String labelId;

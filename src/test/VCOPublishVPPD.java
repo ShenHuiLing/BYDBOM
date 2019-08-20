@@ -48,7 +48,7 @@ public class VCOPublishVPPD extends BTest {
 		  VCOPage vcoPage=new VCOPage(super.driver);
 		  vcoPage.button.clickButton("ÐÂÔö");
 		  Thread.sleep(1000);
-		  String changeOrder=vcoPage.text.getValueFromTextBox();
+		  String changeOrder=vcoPage.text.getChangeOrderNumber();
 		  System.out.println(changeOrder);
 		  
 		  logger.info("save the newly added VCO");

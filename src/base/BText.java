@@ -170,7 +170,7 @@ public class BText {
 	 * get the value from the input text box
 	 * @return 
 	 */
-	public String getValueFromTextBox() {
+	public String getChangeOrderNumber() {
 		String value="";
 		String xPath="//input[contains(@id, 'textfield') and contains(@id, 'inputEl') and contains(@name, 'changeCode') and contains(@readonly, 'readonly')]";
 		WebElement element=this.driver.findElement(By.xpath(xPath));
