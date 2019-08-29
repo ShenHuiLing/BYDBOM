@@ -49,6 +49,7 @@ public class BCommonFunction {
 		String filePath=cf.getProjectPath();
 		filePath=filePath + "\\test-output\\" + cf.getCurrentTime(); 
 		System.out.println(filePath);
+		System.out.println("123456".hashCode());
 		/*
         logger.trace("我是trace");
         logger.info("我是info信息");

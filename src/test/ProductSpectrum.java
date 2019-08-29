@@ -102,6 +102,14 @@ public class ProductSpectrum extends BTest {
 		  productSpectrumPage.option.expandDropdownList();
 		  Thread.sleep(1000);
 		  productSpectrumPage.option.selectOption("燃油");
+		  Thread.sleep(1000);
+		  
+		  logger.info("fill status of car type");
+		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "status", 1);
+		  Thread.sleep(1000);
+		  productSpectrumPage.option.expandDropdownList();
+		  Thread.sleep(1000);
+		  productSpectrumPage.option.selectOption("在研");
 		  
 		  //productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "upgrading", 1);
 		  Thread.sleep(1000);
@@ -191,7 +199,14 @@ public class ProductSpectrum extends BTest {
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "dynamicConfig", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-dynamicConfig-"+super.bcf.getTimeStamp());
+		  Thread.sleep(1000);
 		  
+		  logger.info("fill status of basic car");
+		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "status", 1);
+		  Thread.sleep(1000);
+		  productSpectrumPage.option.expandDropdownList();
+		  Thread.sleep(1000);
+		  productSpectrumPage.option.selectOption("在研");
 		  /*
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "status", 1);
 		  Thread.sleep(1000);
@@ -223,13 +238,7 @@ public class ProductSpectrum extends BTest {
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "description", 1);
 		  Thread.sleep(1000);
 		  productSpectrumPage.text.inputText(TextStyle.TEXTFIELD,"AT-description-"+super.bcf.getTimeStamp());
-		  
-		  logger.info("fill status for configuration car");
-		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "status", 1);
 		  Thread.sleep(1000);
-		  productSpectrumPage.option.expandDropdownList();
-		  Thread.sleep(1000);
-		  productSpectrumPage.option.selectOption("规划");
 		  
 		  logger.info("fill configuration level for configuration car");
 		  productSpectrumPage.text.openTextBox(TextStyle.IDINTR, "configLevel", 1);
