@@ -81,9 +81,9 @@ public class PCOPublishPlanningConfigurationTable extends BTest{
 		  //add the change content
 		  logger.info("add the change content");
 		  planConfigPage.tab.clickTab("变更内容");
-		  Thread.sleep(5000);
-		  planConfigPage.button.clickButton("关联变更");
 		  Thread.sleep(10000);
+		  planConfigPage.button.clickButton("关联变更");
+		  Thread.sleep(15000);
 		  
 		  //start approval process
 		  logger.info("start approval process");
