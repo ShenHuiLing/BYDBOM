@@ -29,7 +29,7 @@ public class PCOPublishPlanningConfigurationTable extends BTest{
 		  Thread.sleep(15000);
 		  //login BOM
 		  super.LoginBOM();
-		  Thread.sleep(20000);
+		  Thread.sleep(25000);
 		  
 		  //open PCO window
 		  logger.info("open PCO management window");
@@ -37,7 +37,7 @@ public class PCOPublishPlanningConfigurationTable extends BTest{
 		  mainPage.mainMenu.hoverMenu("变更管理");
 		  Thread.sleep(2000);
 		  mainPage.mainMenu.clickMenu("规划配置变更管理");
-		  Thread.sleep(5000);
+		  Thread.sleep(10000);
 		  
 		  PlanningConfigurationPage planConfigPage=new PlanningConfigurationPage(super.driver);
 		  
